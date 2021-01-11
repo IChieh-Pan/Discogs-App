@@ -30,29 +30,29 @@ function ListScreen() {
     const results = dataValue[1];
     console.log("resultsperpage", results);
 
-    /*    const item = results[22];
+    const item = results[22];
     console.log("item", item);
-    setItem(item); */
+    setResults(results);
+    // setItem(item);
   };
 
   /* const item = Object.values(data);
   console.log("item", item); */
-
-  {
-    results &&
-      results.map((results) => {
-        const { id, title, cover_image } = results;
-        return (
-          <Grid container>
+  return (
+    <Grid container>
+      {results &&
+        results.map((results) => {
+          const { id, title, cover_image } = results;
+          return (
             <CardDetail
-              image={results.cover_image}
+              key={results.id}
+              cover_image={results.cover_image}
               title={results.title}
-              id={results.id}
             />
-          </Grid>
-        );
-      });
-  }
+          );
+        })}
+    </Grid>
+  );
 }
 
 export default ListScreen;
