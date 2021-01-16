@@ -8,23 +8,23 @@ The discogs-app is a progressive web app that provides a basic search and bookma
 
 ### Approach
 
-React Context API 
-React Router
-Asynchronous Javascript -AJAX
+React Context API <br>
+React Router  <br>
+Asynchronous Javascript -AJAX <br>
 
 
 ### Tools,Framework
 
-Firebase 
-Google Oauth
-Material UI
-React
+Firebase  <br>
+Google Oauth <br>
+Material UI <br>
+React <br>
 
 
 ### Resources
 
-Discogs API 
-https://www.discogs.com/developers/#
+Discogs API  <br>
+https://www.discogs.com/developers/#  <br>
 
 
 
