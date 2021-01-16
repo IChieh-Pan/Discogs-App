@@ -6,6 +6,7 @@ export const DiscogsProvider = (props) => {
   const [data, setData] = useState({});
   const [item, setItem] = useState([]);
   const [results, setResults] = useState([]);
+//   const [pagination, setPagination] = useState({});
   const [search, setSearch] = useState("underground-resistance");
 
   useEffect(() => {
@@ -23,6 +24,8 @@ export const DiscogsProvider = (props) => {
 
     const dataValue = Object.values(data);
     console.log("dataValue", dataValue);
+    const pagination = dataValue[0];
+    console.log("p", pagination);
     const results = dataValue[1];
     console.log("resultsperpage", results);
 
