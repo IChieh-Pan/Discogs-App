@@ -1,11 +1,16 @@
 import "./App.css";
 import ListScreen from "./components/ListScreen";
+import { DiscogsProvider } from "./context/DiscogsListContext";
+import CardDetail from "./components/CardDetail"
 
 function App() {
   return (
-    <div className="App">
-      <ListScreen />
-    </div>
+    <DiscogsProvider>
+      <div className="App">
+        <ListScreen />
+        <CardDetail />
+      </div>
+    </DiscogsProvider>
   );
 }
 
