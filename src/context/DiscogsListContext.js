@@ -6,7 +6,7 @@ export const DiscogsProvider = (props) => {
   const [data, setData] = useState({});
   const [item, setItem] = useState([]);
   const [results, setResults] = useState([]);
-//   const [pagination, setPagination] = useState({});
+  const [pagination, setPagination] = useState({});
   const [search, setSearch] = useState("underground-resistance");
 
   useEffect(() => {
@@ -35,8 +35,19 @@ export const DiscogsProvider = (props) => {
     // setItem(item);
   };
 
+    const value = {
+        data,
+        setData,
+        results,
+        setResults,
+        item,
+        setItem,
+        pagination,
+        setPagination,
+    }
+
   return (
-    <DiscogsListContext.Provider value={[results, setResults]}>
+    <DiscogsListContext.Provider value={value}>
       {props.children}
     </DiscogsListContext.Provider>
   );
