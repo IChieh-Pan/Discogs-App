@@ -3,13 +3,13 @@ import "fontsource-roboto";
 import CardDetail from "./CardDetail";
 import Grid from "@material-ui/core/Grid";
 import { DiscogsListContext } from "../context/DiscogsListContext";
-
 // import Typography from "@material-ui/core/Typography";
-
 // import { BatteryAlert } from "@material-ui/icons";
 
+
+
 function ListScreen() {
-  const [results, setResults] = useContext(DiscogsListContext);
+  const { results, setResults } = useContext(DiscogsListContext);
 
   
   return (

@@ -3,19 +3,14 @@ import { DiscogsListContext } from "../context/DiscogsListContext";
 
 function Count() {
   const {
-    data,
-    setData,
-    results,
-    setResults,
-    item,
-    setItem,
     pagination,
     setPagination,
   } = useContext(DiscogsListContext);
+    console.log("l",pagination)
 
   return (
     <div>
-      <h1>{pagination}</h1>
+      <h1>{pagination.items}ggg</h1>
     </div>
   );
 }
