@@ -6,23 +6,21 @@ import { DiscogsListContext } from "../context/DiscogsListContext";
 // import Typography from "@material-ui/core/Typography";
 // import { BatteryAlert } from "@material-ui/icons";
 
-
-
 function ListScreen() {
   const { results, setResults } = useContext(DiscogsListContext);
 
-  
   return (
     <div>
       <Grid container>
         {results &&
-          results.map((results) => {
-            const { id, title, cover_image } = results;
+          results.map((result) => {
+            const { id, title, cover_image } = result;
             return (
               <CardDetail
-                key={results.id}
-                cover_image={results.cover_image}
-                title={results.title}
+                key={result.id}
+                id={result.id}
+                cover_image={result.cover_image}
+                title={result.title}
               />
             );
           })}

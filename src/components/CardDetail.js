@@ -7,6 +7,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import { Link } from "react-router-dom";
 
 function CardDetail(props) {
   const useStyles = makeStyles({
@@ -19,9 +20,9 @@ function CardDetail(props) {
   });
 
   const classes = useStyles();
-
+  console.log("props", props);
   return (
-    <Card className={classes.root} key={props.id}>
+    <Card className={classes.root}>
       <CardActionArea>
         <CardMedia className={classes.media} image={props.cover_image} />
         <CardContent>
@@ -38,9 +39,11 @@ function CardDetail(props) {
         <Button size="small" color="primary">
           Share
         </Button>
-        <Button size="small" color="primary">
-          Learn More
-        </Button>
+        <Link to={`/${props.id}/detail`}>
+          <Button size="small" color="primary">
+            Learn More
+          </Button>
+        </Link>
       </CardActions>
     </Card>
   );
