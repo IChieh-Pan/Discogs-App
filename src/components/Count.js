@@ -10,7 +10,7 @@ function Count() {
 
   return (
     <div>
-      <h1>{pagination.items}ggg</h1>
+      <h1>total results: {pagination.items}</h1>
     </div>
   );
 }
