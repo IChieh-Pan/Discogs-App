@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import "fontsource-roboto";
-import CardDetail from "./CardDetail";
+import Cards from "./Cards";
 import Grid from "@material-ui/core/Grid";
 import { DiscogsListContext } from "../context/DiscogsListContext";
 // import Typography from "@material-ui/core/Typography";
@@ -16,7 +16,7 @@ function ListScreen() {
           results.map((result) => {
             const { id, title, cover_image } = result;
             return (
-              <CardDetail
+              <Cards
                 key={result.id}
                 id={result.id}
                 cover_image={result.cover_image}

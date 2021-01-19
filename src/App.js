@@ -1,7 +1,7 @@
 import "./App.css";
 import ListScreen from "./components/ListScreen";
 import { DiscogsProvider } from "./context/DiscogsListContext";
-import CardDetail from "./components/CardDetail";
+import CardDetail from "./components/Cards";
 import Count from "./components/Count";
 import DetailScreen from "./components/DetailScreen";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -16,7 +16,7 @@ function App() {
             <Route exact path={"/"} component={ListScreen} />
             <Route path={"/:id/detail"} component={DetailScreen} />
             {/* <CardDetail /> */}
-            {/* <DetailScreen /> */}
+             <DetailScreen />
           </div>
         </DiscogsProvider>
       </Switch>

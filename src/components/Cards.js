@@ -9,7 +9,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
 
-function CardDetail(props) {
+function Cards(props) {
   const useStyles = makeStyles({
     root: {
       maxWidth: 345,
@@ -20,7 +20,8 @@ function CardDetail(props) {
   });
 
   const classes = useStyles();
-  console.log("props", props);
+  // console.log("props", props);
+
   return (
     <Card className={classes.root}>
       <CardActionArea>
@@ -49,4 +50,4 @@ function CardDetail(props) {
   );
 }
 
-export default CardDetail;
+export default Cards;

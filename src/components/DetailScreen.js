@@ -20,10 +20,16 @@ import {
   Link,
   useParams,
 } from "react-router-dom";
+
+
+
 function DetailScreen(props) {
   const { item, setItem } = useContext(DiscogsListContext);
   let { id } = useParams();
-  console.log("id", id);
+    console.log("id", id);
+    
+
+    
   const useStyles = makeStyles((theme) => ({
     root: {
       width: "100%",
