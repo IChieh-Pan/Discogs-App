@@ -4,7 +4,8 @@ import { DiscogsProvider } from "./context/DiscogsListContext";
 import CardDetail from "./components/Cards";
 import Count from "./components/Count";
 import DetailScreen from "./components/DetailScreen";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, useParams } from "react-router-dom";
+import DetailContext from "./context/DetailContext"
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
             <Route exact path={"/"} component={ListScreen} />
             <Route path={"/:id/detail"} component={DetailScreen} />
             {/* <CardDetail /> */}
-             <DetailScreen />
+            <DetailScreen />
+            <DetailContext />
           </div>
         </DiscogsProvider>
       </Switch>
