@@ -20,7 +20,6 @@ function Cards(props) {
   });
 
   const classes = useStyles();
-  // console.log("props", props);
 
   return (
     <Card className={classes.root}>
@@ -40,7 +39,7 @@ function Cards(props) {
         <Button size="small" color="primary">
           Share
         </Button>
-        <Link to={`/${props.id}/detail`}>
+        <Link to={`/detail/${props.id}/${props.type}`}>
           <Button size="small" color="primary">
             Learn More
           </Button>

@@ -4,25 +4,33 @@ import { DiscogsProvider } from "./context/DiscogsListContext";
 import CardDetail from "./components/Cards";
 import Count from "./components/Count";
 import DetailScreen from "./components/DetailScreen";
-import { BrowserRouter as Router, Switch, Route, useParams } from "react-router-dom";
-import DetailContext from "./context/DetailContext"
+import { BrowserRouter, Switch, Route, useParams } from "react-router-dom";
+import DetailContext from "./context/DetailContext";
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <Switch>
         <DiscogsProvider>
           <div className="App">
             <Count />
             <Route exact path={"/"} component={ListScreen} />
-            <Route path={"/:id/detail"} component={DetailScreen} />
-            {/* <CardDetail /> */}
-            <DetailScreen />
-            <DetailContext />
+            <Route
+              path="/detail/:id/:type"
+              render={(props) => (
+                <DetailContext
+                  id={props.match.params.id}
+                  type={props.match.params.type}
+                />
+              )}
+            />
+
+            {/* <DetailScreen />
+            <DetailContext /> */}
           </div>
         </DiscogsProvider>
       </Switch>
-    </Router>
+    </BrowserRouter>
   );
 }
 

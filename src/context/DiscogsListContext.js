@@ -41,6 +41,10 @@ export const DiscogsProvider = (props) => {
     // setItem(item);
   };
 
+  const test = () => {
+  console.log("callinf function test")
+}
+
   const value = {
     /*    data,
         setData, */
@@ -50,6 +54,7 @@ export const DiscogsProvider = (props) => {
     setItem,
     pagination,
     setPagination,
+    test,
   };
 
   return (

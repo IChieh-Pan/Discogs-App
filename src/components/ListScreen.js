@@ -14,13 +14,14 @@ function ListScreen() {
       <Grid container>
         {results &&
           results.map((result) => {
-            const { id, title, cover_image } = result;
+            const { id, title, cover_image, type } = result;
             return (
               <Cards
-                key={result.id}
-                id={result.id}
-                cover_image={result.cover_image}
-                title={result.title}
+                key={id}
+                id={id}
+                cover_image={cover_image}
+                title={title}
+                type={type}
               />
             );
           })}
