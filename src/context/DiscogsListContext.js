@@ -2,6 +2,7 @@ import React, { useState, createContext, useEffect } from "react";
 
 export const DiscogsListContext = createContext();
 
+
 export const DiscogsProvider = (props) => {
   //   const [data, setData] = useState({});
   const [item, setItem] = useState([]);
@@ -22,8 +23,6 @@ export const DiscogsProvider = (props) => {
 
     console.log("data", data);
 
-    /* const dataValue = Object.values(data);
-    console.log("dataValue", dataValue); */
     const pagination = data.pagination;
     console.log("p", pagination);
 
@@ -37,13 +36,7 @@ export const DiscogsProvider = (props) => {
     setResults(results);
     setPagination(pagination);
     setItem(item);
-
-    // setItem(item);
   };
-
-  const test = () => {
-  console.log("callinf function test")
-}
 
   const value = {
     /*    data,
@@ -54,7 +47,6 @@ export const DiscogsProvider = (props) => {
     setItem,
     pagination,
     setPagination,
-    test,
   };
 
   return (
@@ -63,3 +55,5 @@ export const DiscogsProvider = (props) => {
     </DiscogsListContext.Provider>
   );
 };
+
+

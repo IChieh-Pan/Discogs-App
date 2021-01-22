@@ -5,7 +5,9 @@ import CardDetail from "./components/Cards";
 import Count from "./components/Count";
 import DetailScreen from "./components/DetailScreen";
 import { BrowserRouter, Switch, Route, useParams } from "react-router-dom";
-import DetailContext from "./context/DetailContext";
+import Detail from "./components/Detail";
+
+
 
 function App() {
   return (
@@ -18,7 +20,7 @@ function App() {
             <Route
               path="/detail/:id/:type"
               render={(props) => (
-                <DetailContext
+                <Detail
                   id={props.match.params.id}
                   type={props.match.params.type}
                 />
