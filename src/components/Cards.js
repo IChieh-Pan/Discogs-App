@@ -13,7 +13,6 @@ import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 
 const theme = createMuiTheme({
   typography: {
-
     h6: {
       fontWeight: 400, // or 'bold'
     },
@@ -64,7 +63,7 @@ function Cards(props) {
                 component="p"
                 display="block"
               >
-                Country: {props.country}
+                Type: {props.type}
               </Typography>
               <Typography
                 align="left"

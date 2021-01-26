@@ -5,6 +5,7 @@ import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import AlbumIcon from "@material-ui/icons/Album";
 import AudiotrackIcon from "@material-ui/icons/Audiotrack";
 import FaceIcon from "@material-ui/icons/Face";
+import LocalOfferIcon from "@material-ui/icons/LocalOffer";
 
 const useStyles = makeStyles({
   root: {
@@ -28,8 +29,9 @@ function BottomNav() {
       showLabels
       className={classes.root}
     >
-      <BottomNavigationAction label="Label" icon={<AlbumIcon />} />
+      <BottomNavigationAction label="Label" icon={<LocalOfferIcon />} />
       <BottomNavigationAction label="Release" icon={<AudiotrackIcon />} />
+      <BottomNavigationAction label="Master" icon={<AlbumIcon />} />
       <BottomNavigationAction label="Artist" icon={<FaceIcon />} />
     </BottomNavigation>
   );

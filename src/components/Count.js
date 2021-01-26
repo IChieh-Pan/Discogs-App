@@ -10,7 +10,7 @@ function Count() {
 
   return (
     <div>
-      <h1>total results: {pagination.items}</h1>
+      <h2>Underground Resistance: {pagination.items}</h2>
     </div>
   );
 }

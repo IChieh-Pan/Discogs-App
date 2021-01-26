@@ -9,6 +9,7 @@ import Detail from "./components/Detail";
 import Typography from "@material-ui/core/Typography";
 import BotttomNav from "../src/components/BottomNav";
 import BottomNav from "../src/components/BottomNav";
+import TopBar from "./components/TopBar";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Switch>
         <DiscogsProvider>
           <div className="App">
+            <TopBar />
             <Count />
             <Route exact path={"/"} component={ListScreen} />
             <Route
