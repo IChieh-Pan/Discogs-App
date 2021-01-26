@@ -6,7 +6,9 @@ import Count from "./components/Count";
 import DetailScreen from "./components/DetailScreen";
 import { BrowserRouter, Switch, Route, useParams } from "react-router-dom";
 import Detail from "./components/Detail";
-
+import Typography from "@material-ui/core/Typography";
+import BotttomNav from "../src/components/BottomNav";
+import BottomNav from "../src/components/BottomNav";
 
 function App() {
   return (
@@ -28,6 +30,7 @@ function App() {
 
             {/* <DetailScreen />
             <DetailContext /> */}
+            <BottomNav />
           </div>
         </DiscogsProvider>
       </Switch>
