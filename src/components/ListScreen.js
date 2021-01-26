@@ -14,7 +14,15 @@ function ListScreen() {
       <Grid container>
         {results &&
           results.map((result) => {
-            const { id, title, cover_image, type } = result;
+            const {
+              id,
+              title,
+              cover_image,
+              type,
+              country,
+              year,
+              format,
+            } = result;
             return (
               <Cards
                 key={id}
@@ -22,6 +30,9 @@ function ListScreen() {
                 cover_image={cover_image}
                 title={title}
                 type={type}
+                country={country}
+                year={year}
+                format={format}
               />
             );
           })}

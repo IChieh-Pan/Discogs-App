@@ -12,35 +12,75 @@ import { Link } from "react-router-dom";
 function Cards(props) {
   const useStyles = makeStyles({
     root: {
-      maxWidth: 345,
+      maxWidth: 800,
+    },
+    details: {
+      display: "flex",
+      flexDirection: "row",
+    },
+    content: {
+      width: 400,
     },
     media: {
-      height: 140,
+      width: 200,
+    },
+    actions: {
+      display: "flex",
+      flexDirection: "row-reverse",
     },
   });
 
   const classes = useStyles();
+  const formatList = props.format;
+  console.log("Format", formatList);
 
   return (
     <Card className={classes.root}>
       <CardActionArea>
-        <CardMedia className={classes.media} image={props.cover_image} />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {props.title}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
-          </Typography>
-        </CardContent>
+        <div className={classes.details}>
+          <CardMedia className={classes.media} image={props.cover_image} />
+          <CardContent className={classes.content}>
+            <Typography gutterBottom variant="h5" component="h2">
+              {props.title}
+            </Typography>
+            <Typography
+              align="left"
+              variant="body2"
+              color="textSecondary"
+              component="p"
+              display="block"
+            >
+              Country: {props.country}
+            </Typography>
+            <Typography
+              align="left"
+              variant="body2"
+              color="textSecondary"
+              component="p"
+              display="block"
+            >
+              Year: {props.year}
+            </Typography>
+            <Typography
+              align="left"
+              variant="body2"
+              color="textSecondary"
+              component="p"
+              display="block"
+            >
+              Format:{formatList}.toString()
+              {/*              {formatList && formatList.map(
+            (item)=> { return <p> {item}.join(",")</p>})} */}
+            </Typography>
+          </CardContent>
+        </div>
       </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
+      <CardActions className={classes.actions} justifyContent="flex-end">
+        <Button variant="outlined" size="small" color="light">
           Share
         </Button>
         <Link to={`/detail/${props.id}/${props.type}`}>
-          <Button size="small" color="primary">
+          <Button variant="outlined" size="small" color="light">
             Learn More
           </Button>
         </Link>
