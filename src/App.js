@@ -8,7 +8,6 @@ import { BrowserRouter, Switch, Route, useParams } from "react-router-dom";
 import Detail from "./components/Detail";
 
 
-
 function App() {
   return (
     <BrowserRouter>
