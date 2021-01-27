@@ -9,21 +9,23 @@ export const DiscogsProvider = (props) => {
   const [pagination, setPagination] = useState({});
   // const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
-  const [err, setErr] = useState({});
+  // const [err, setErr] = useState({});
 
   useEffect(() => {
-    fetchData("");
-    setLoading(true);
+    fetchData("");  
   }, [null]);
 
-  
+
   const fetchData = async (search) => {
     try {
+      setLoading(true);
       const response = await fetch(
         `https://api.discogs.com//database/search?q=${search}&key=bsJCAGTsbOBTVFHLLILq&secret=fWchXQtBWETnYKeYagJLnBTqmWaaUokV`
       );
       const data = await response.json();
-      console.log("data", data);
+      setLoading(false);
+
+      // console.log("data", data);
       const pagination = data.pagination;
       console.log("p", pagination);
 
