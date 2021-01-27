@@ -10,12 +10,12 @@ import Typography from "@material-ui/core/Typography";
 import BotttomNav from "../src/components/BottomNav";
 import BottomNav from "../src/components/BottomNav";
 import TopBar from "./components/TopBar";
-import {ThemeProvider} from "./context/ThemeContext"
+// import {ThemeProvider} from "./context/ThemeContext"
 
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
+    // <ThemeProvider >
       <BrowserRouter>
         <Switch>
           <DiscogsProvider>
@@ -40,7 +40,7 @@ function App() {
           </DiscogsProvider>
         </Switch>
       </BrowserRouter>
-    </ThemeProvider>
+    // </ThemeProvider>
   );
 }
 

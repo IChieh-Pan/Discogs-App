@@ -90,12 +90,18 @@ function TopBar() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const { /* search, setSearch , */ fetchData} = useContext(DiscogsListContext);
   const [search, setSearch] = useState("");
 
   const searchHandler = (e) => {
     console.log(`${e.target.value}`);
     setSearch(e.target.value);
   };
+
+  const searchSubmit = (e) => {
+      // e.preventDefault(); the buttton is not a form, no need 
+      fetchData(search);
+    };
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -204,7 +210,7 @@ function TopBar() {
               value={search}
             />
           </div>
-          <Button variant="contained" color="primary"/*  onSubmit={searchSubmit} */>
+          <Button variant="contained" color="primary" onClick={searchSubmit}>
             GO
           </Button>
           <div className={classes.grow} />

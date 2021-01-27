@@ -1,4 +1,4 @@
-import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+/* import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import React, { createContext } from "react";
 
 export const ThemeContext = createContext();
@@ -12,6 +12,6 @@ function ThemeContext() {
   });
 
   return <ThemeProvider theme={theme}>{props.children}</ThemeProvider>;
-}
+} */
 
 // export default ThemeContext;
