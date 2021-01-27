@@ -2,13 +2,12 @@ import React, { useState, createContext, useEffect } from "react";
 
 export const DiscogsListContext = createContext();
 
-
 export const DiscogsProvider = (props) => {
   //   const [data, setData] = useState({});
   const [item, setItem] = useState([]);
   const [results, setResults] = useState([]);
   const [pagination, setPagination] = useState({});
-  const [search, setSearch] = useState("underground-resistance");
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     fetchData();
@@ -36,6 +35,17 @@ export const DiscogsProvider = (props) => {
     setResults(results);
     setPagination(pagination);
     setItem(item);
+    setSearch(search);
+  };
+
+  const searchHandler = (e) => {
+    console.log(`${e.target.value}`);
+    setSearch(e.target.value);
+  };
+
+  const searchSubmit = (e) => {
+    e.preventDefault();
+    fetchData();
   };
 
   const value = {
@@ -47,6 +57,10 @@ export const DiscogsProvider = (props) => {
     setItem,
     pagination,
     setPagination,
+    search,
+    setSearch,
+    searchHandler,
+    searchSubmit
   };
 
   return (
@@ -55,5 +69,3 @@ export const DiscogsProvider = (props) => {
     </DiscogsListContext.Provider>
   );
 };
-
-
