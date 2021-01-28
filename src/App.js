@@ -10,36 +10,34 @@ import Typography from "@material-ui/core/Typography";
 import BotttomNav from "../src/components/BottomNav";
 import BottomNav from "../src/components/BottomNav";
 import TopBar from "./components/TopBar";
-// import {ThemeProvider} from "./context/ThemeContext"
-
 
 function App() {
   return (
     // <ThemeProvider >
-      <BrowserRouter>
-        <Switch>
-          <DiscogsProvider>
-            <div className="App">
-              <TopBar />
-              <Count />
-              <Route exact path={"/"} component={ListScreen} />
-              <Route
-                path="/detail/:id/:type"
-                render={(props) => (
-                  <Detail
-                    id={props.match.params.id}
-                    type={props.match.params.type}
-                  />
-                )}
-              />
+    <BrowserRouter>
+      <Switch>
+        <DiscogsProvider>
+          <div className="App">
+            <TopBar />
+            <Count />
+            <Route exact path={"/"} component={ListScreen} />
+            <Route
+              path="/detail/:id/:type"
+              render={(props) => (
+                <Detail
+                  id={props.match.params.id}
+                  type={props.match.params.type}
+                />
+              )}
+            />
 
-              {/* <DetailScreen />
+            {/* <DetailScreen />
             <DetailContext /> */}
-              <BottomNav />
-            </div>
-          </DiscogsProvider>
-        </Switch>
-      </BrowserRouter>
+            <BottomNav />
+          </div>
+        </DiscogsProvider>
+      </Switch>
+    </BrowserRouter>
     // </ThemeProvider>
   );
 }

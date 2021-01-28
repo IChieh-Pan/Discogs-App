@@ -8,9 +8,13 @@ import Spinner from "./Spinner";
 function ListScreen() {
   const { results, setResults, loading } = useContext(DiscogsListContext);
 
+  const style = {
+    marginTop: '10px'
+  }
+
   return (
     <div>
-      <Grid container>
+      <Grid container style={style}>
         {loading ? (
           <Spinner />
         ) : (
