@@ -10,17 +10,24 @@ import Typography from "@material-ui/core/Typography";
 import BotttomNav from "../src/components/BottomNav";
 import BottomNav from "../src/components/BottomNav";
 import TopBar from "./components/TopBar";
+import SignUp from "./components/SignUp";
+import Login from "./components/Login";
+import {AuthProvider} from "./context/Auth"
+
 
 function App() {
   return (
     // <ThemeProvider >
+    <AuthProvider>
     <BrowserRouter>
       <Switch>
         <DiscogsProvider>
           <div className="App">
             <TopBar />
             <Count />
-            <Route exact path={"/"} component={ListScreen} />
+            <Route exact path="/" component={ListScreen} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/signup" component={SignUp} />
             <Route
               path="/detail/:id/:type"
               render={(props) => (
@@ -30,7 +37,6 @@ function App() {
                 />
               )}
             />
-
             {/* <DetailScreen />
             <DetailContext /> */}
             <BottomNav />
@@ -38,7 +44,8 @@ function App() {
         </DiscogsProvider>
       </Switch>
     </BrowserRouter>
-    // </ThemeProvider>
+    {/* </ThemeProvider> */}
+    </AuthProvider>
   );
 }
 
