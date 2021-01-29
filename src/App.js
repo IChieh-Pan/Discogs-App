@@ -12,39 +12,39 @@ import BottomNav from "../src/components/BottomNav";
 import TopBar from "./components/TopBar";
 import SignUp from "./components/SignUp";
 import Login from "./components/Login";
-import {AuthProvider} from "./context/Auth"
-
+import { AuthProvider } from "./components/Auth";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   return (
     // <ThemeProvider >
     <AuthProvider>
-    <BrowserRouter>
-      <Switch>
-        <DiscogsProvider>
-          <div className="App">
-            <TopBar />
-            <Count />
-            <Route exact path="/" component={ListScreen} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/signup" component={SignUp} />
-            <Route
-              path="/detail/:id/:type"
-              render={(props) => (
-                <Detail
-                  id={props.match.params.id}
-                  type={props.match.params.type}
-                />
-              )}
-            />
-            {/* <DetailScreen />
+      <BrowserRouter>
+        <Switch>
+          <DiscogsProvider>
+            <div className="App">
+              <TopBar />
+              <Count />
+              <PrivateRoute exact path="/" component={ListScreen} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/signup" component={SignUp} />
+              <Route
+                path="/detail/:id/:type"
+                render={(props) => (
+                  <Detail
+                    id={props.match.params.id}
+                    type={props.match.params.type}
+                  />
+                )}
+              />
+              {/* <DetailScreen />
             <DetailContext /> */}
-            <BottomNav />
-          </div>
-        </DiscogsProvider>
-      </Switch>
-    </BrowserRouter>
-    {/* </ThemeProvider> */}
+              <BottomNav />
+            </div>
+          </DiscogsProvider>
+        </Switch>
+      </BrowserRouter>
+      {/* </ThemeProvider> */}
     </AuthProvider>
   );
 }

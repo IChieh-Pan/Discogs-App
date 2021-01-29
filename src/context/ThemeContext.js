@@ -28,11 +28,11 @@ const theme = createMuiTheme({
   },
 });
 
-/* export default function ThemeContext() {
+export default function ThemeContext() {
   return (
     <ThemeProvider theme={theme}>
       <TopBar />
       <BotttomNav />
     </ThemeProvider>
   );
-} */
+}
