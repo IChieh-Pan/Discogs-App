@@ -39,9 +39,9 @@ const useStyles = makeStyles((theme) => ({
 const Login = ({ history }) => {
   const classes = useStyles();
   const handleLogin = useCallback(
-    async (e) => {
-      e.preventDefault();
-      const { email, password } = e.target.elements;
+    async (event) => {
+      event.preventDefault();
+      const { email, password } = event.target.elements;
       try {
         await app
           .auth()

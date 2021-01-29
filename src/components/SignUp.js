@@ -1,5 +1,6 @@
 import React, { useCallback } from "react";
 import { withRouter } from "react-router";
+// import FirebaseNew from "./FirebaseNew"
 import app from "./firebase";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -17,9 +18,9 @@ import Container from "@material-ui/core/Container";
 
 const SignUp = ({ history }) => {
   const handleSignUp = useCallback(
-    async (e) => {
-      e.preventDefault();
-      const { email, password } = e.target.elements;
+    async (event) => {
+      event.preventDefault();
+      const { email, password } = event.target.elements;
       try {
         await app
           .auth()
@@ -59,7 +60,7 @@ const SignUp = ({ history }) => {
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-{/*         <Avatar className={classes.avatar}>
+        {/*         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar> */}
         <Typography component="h1" variant="h5">

@@ -1,4 +1,5 @@
 import "./App.css";
+import React from "react"
 import ListScreen from "./components/ListScreen";
 import { DiscogsProvider } from "./context/DiscogsListContext";
 import CardDetail from "./components/Cards";
