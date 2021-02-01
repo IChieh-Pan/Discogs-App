@@ -1,5 +1,5 @@
 import "./App.css";
-import React from "react"
+import React from "react";
 import ListScreen from "./components/ListScreen";
 import { DiscogsProvider } from "./context/DiscogsListContext";
 import CardDetail from "./components/Cards";
@@ -26,7 +26,7 @@ function App() {
             <div className="App">
               <TopBar />
               <Count />
-              <PrivateRoute exact path="/" component={ListScreen} />
+              <Route exact path="/" component={ListScreen} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={SignUp} />
               <Route

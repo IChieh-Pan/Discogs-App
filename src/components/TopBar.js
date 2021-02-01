@@ -88,9 +88,9 @@ const useStyles = makeStyles((theme) => ({
 
 function TopBar() {
   const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-  const { /* search, setSearch , */ fetchData} = useContext(DiscogsListContext);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
+  const { fetchData } = useContext(DiscogsListContext);
   const [search, setSearch] = useState("");
 
   const searchHandler = (e) => {
@@ -99,9 +99,9 @@ function TopBar() {
   };
 
   const searchSubmit = (e) => {
-      // e.preventDefault(); the buttton is not a form, no need 
-      fetchData(search);
-    };
+    // e.preventDefault(); the buttton is not a form, no need
+    fetchData(search);
+  };
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);

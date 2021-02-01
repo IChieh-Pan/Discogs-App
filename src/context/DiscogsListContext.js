@@ -10,6 +10,8 @@ export const DiscogsProvider = (props) => {
   // const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
   // const [err, setErr] = useState({});
+  const [type, setType] = useState("");
+
 
   useEffect(() => {
     fetchData("");  
@@ -31,6 +33,10 @@ export const DiscogsProvider = (props) => {
 
       const results = data.results;
       console.log("resultsperpage", results);
+  
+
+
+
 
       const item = results[12];
       console.log("item", item);
@@ -39,6 +45,7 @@ export const DiscogsProvider = (props) => {
       setResults(results);
       setPagination(pagination);
       setItem(item);
+      
       // setSearch(search);
     } catch (err) {
       alert(err);
@@ -59,6 +66,8 @@ export const DiscogsProvider = (props) => {
     fetchData,
     loading,
     setLoading,
+    type,
+    setType
   };
 
   return (

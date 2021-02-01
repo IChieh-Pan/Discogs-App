@@ -6,7 +6,12 @@ import { DiscogsListContext } from "../context/DiscogsListContext";
 import Spinner from "./Spinner";
 
 function ListScreen() {
-  const { results, setResults, loading } = useContext(DiscogsListContext);
+  const { results, setResults, loading, type } = useContext(DiscogsListContext);
+
+  const newResult = results.filter((result) => {
+    return result.type === type;
+    });
+       
 
   const style = {
     marginTop: '10px'
@@ -18,7 +23,7 @@ function ListScreen() {
         {loading ? (
           <Spinner />
         ) : (
-          results.map((result) => {
+          newResult.map((result) => {
             const {
               id,
               title,

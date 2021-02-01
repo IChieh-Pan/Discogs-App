@@ -13,10 +13,12 @@ import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 
 const theme = createMuiTheme({
   typography: {
-    h6: {
+    h5: {
+      color: "black",
       fontWeight: 400, // or 'bold'
     },
     body2: {
+      color: "black",
       fontWeight: 400,
     },
   },
@@ -50,49 +52,60 @@ function Cards(props) {
   return (
     <ThemeProvider theme={theme}>
       <Card className={classes.root}>
-        <CardActionArea>
-          <div className={classes.details}>
-            <CardMedia className={classes.media} image={props.cover_image} />
-            <CardContent className={classes.content}>
-              <Typography gutterBottom variant="h6" component="h1" align="left">
-                {props.title}
-              </Typography>
-              <Typography
-                align="left"
-                variant="body2"
-                component="p"
-                display="block"
-              >
-                Type: {props.type}
-              </Typography>
-              <Typography
-                align="left"
-                variant="body2"
-                component="p"
-                display="block"
-              >
-                Year: {props.year}
-              </Typography>
-              <Typography
-                align="left"
-                variant="body2"
-                component="p"
-                display="block"
-              >
-                Format:{formatList && formatList.join(" , ")}
-              </Typography>
-            </CardContent>
-          </div>
-        </CardActionArea>
+        <Link
+          variant="body2"
+          to={`/detail/${props.id}/${props.type}`}
+          style={{ textDecoration: "none" }}
+        >
+          <CardActionArea>
+            <div className={classes.details}>
+              <CardMedia className={classes.media} image={props.cover_image} />
+              <CardContent className={classes.content}>
+                <Typography
+                  gutterBottom
+                  variant="h5"
+                  component="h1"
+                  align="left"
+                >
+                  {props.title}
+                </Typography>
+                <Typography
+                  align="left"
+                  variant="body2"
+                  component="p"
+                  display="block"
+                >
+                  Type: {props.type}
+                </Typography>
+                <Typography
+                  align="left"
+                  variant="body2"
+                  component="p"
+                  display="block"
+                >
+                  Year: {props.year}
+                </Typography>
+                <Typography
+                  align="left"
+                  variant="body2"
+                  component="p"
+                  display="block"
+                >
+                  Format:{formatList && formatList.join(" , ")}
+                </Typography>
+              </CardContent>
+            </div>
+          </CardActionArea>
+        </Link>
         <CardActions className={classes.actions} justifyContent="flex-end">
-          <Button variant="text" size="small" color="primary">
+          <Button variant="text" size="small" color="black">
             Share
           </Button>
-          <Link to={`/detail/${props.id}/${props.type}`}>
-            <Button variant="text" size="small" color="primary">
+          {/* <Link to={`/detail/${props.id}/${props.type}`}>
+            <Button variant="text" size="small" color="black">
               Learn More
             </Button>
-          </Link>
+          </Link> */}
         </CardActions>
       </Card>
     </ThemeProvider>

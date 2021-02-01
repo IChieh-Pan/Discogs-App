@@ -1,6 +1,6 @@
-import React, { useCallback, useContext } from "react";
+import React, { useCallback } from "react";
 import { withRouter } from "react-router";
-import { AuthContext } from "./Auth";
+// import { AuthContext } from "./Auth";
 import app from "./firebase";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -35,10 +35,13 @@ const useStyles = makeStyles((theme) => ({
 
 const SignUp = ({ history }) => {
   const classes = useStyles();
+
   const handleSignUp = useCallback(
     async (event) => {
       event.preventDefault();
+      console.log(event.target);
       const { email, password } = event.target.elements;
+
       try {
         await app
           .auth()
@@ -63,7 +66,7 @@ const SignUp = ({ history }) => {
         <Typography component="h1" variant="h5">
           Sign Up
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={handleSignUp}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -97,7 +100,6 @@ const SignUp = ({ history }) => {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={handleSignUp}
           >
             Sign Up
           </Button>

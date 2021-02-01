@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import { DiscogsListContext } from "../context/DiscogsListContext";
 import { makeStyles } from "@material-ui/core/styles";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
@@ -19,12 +20,46 @@ const useStyles = makeStyles({
 function BottomNav() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  const { results, setResults, fetchData, setType } = useContext(
+    DiscogsListContext
+  );
+  console.log("results", results);
+
+  const handleChange = (newValue) => {
+    setValue(newValue);
+    if (newValue === 0) {
+      setType("label");
+    } if (newValue === 1) {
+      setType("release")
+    }
+    if (newValue === 2) {
+      setType("master")
+    }
+      if (newValue === 3 ) {
+        setType("artist")
+      }
+  };
+
+  /* results.map((results) => {
+    if (results.type.value === "master") {
+       results;
+    }
+    console.log("x",results)
+  }); */
+
+  /* 
+  const label = (results) => {
+    if (results.values === "master") {
+      return results;
+    }
+  };
+  console.log(label); */
 
   return (
     <BottomNavigation
       value={value}
       onChange={(event, newValue) => {
-        setValue(newValue);
+        handleChange(newValue);
       }}
       showLabels
       className={classes.root}

@@ -41,6 +41,7 @@ const Login = ({ history }) => {
   const handleLogin = useCallback(
     async (event) => {
       event.preventDefault();
+      console.log(event.target.elements);
       const { email, password } = event.target.elements;
       try {
         await app
@@ -67,7 +68,7 @@ const Login = ({ history }) => {
         <Typography component="h1" variant="h5">
           Log in
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={handleLogin}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -100,10 +101,10 @@ const Login = ({ history }) => {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={handleLogin}
           >
             Log In
           </Button>
+
           <Grid container>
             <Grid item xs>
               <Link href="#" variant="body2">
