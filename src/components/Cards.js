@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -25,6 +25,14 @@ const theme = createMuiTheme({
 });
 
 function Cards(props) {
+  // const [favorite, setFavorite] = useState([]);
+  const [favorite, setFavorite] = useState([1]);
+
+  const addFavorite = (props) => {
+    console.log("works");
+    setFavorite([...favorite, props]);
+  };
+
   const useStyles = makeStyles({
     root: {
       maxWidth: 800,
@@ -98,14 +106,18 @@ function Cards(props) {
           </CardActionArea>
         </Link>
         <CardActions className={classes.actions} justifyContent="flex-end">
+          <p>favorites: {favorite.length}</p>
           <Button variant="text" size="small" color="black">
             Share
           </Button>
-          {/* <Link to={`/detail/${props.id}/${props.type}`}>
-            <Button variant="text" size="small" color="black">
-              Learn More
-            </Button>
-          </Link> */}
+          <Button
+            variant="text"
+            size="small"
+            color="black"
+            onClick={() => addFavorite(props)}
+          >
+            Save Favorite
+          </Button>
         </CardActions>
       </Card>
     </ThemeProvider>

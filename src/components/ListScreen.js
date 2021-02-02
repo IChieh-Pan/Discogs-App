@@ -8,6 +8,7 @@ import Spinner from "./Spinner";
 function ListScreen() {
   const { results, setResults, loading, type } = useContext(DiscogsListContext);
 
+
   const newResult = results.filter((result) => {
     return result.type === type;
     });

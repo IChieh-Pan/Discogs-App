@@ -26,6 +26,7 @@ function App() {
             <div className="App">
               <TopBar />
               <Count />
+
               <Route exact path="/" component={ListScreen} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={SignUp} />
