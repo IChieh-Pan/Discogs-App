@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -10,6 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
 import { grey, deepOrange } from "@material-ui/core/colors";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import Checkbox from "@material-ui/core/Checkbox";
 
 const theme = createMuiTheme({
   typography: {
@@ -25,13 +26,27 @@ const theme = createMuiTheme({
 });
 
 function Cards(props) {
-  // const [favorite, setFavorite] = useState([]);
-  const [favorite, setFavorite] = useState([1]);
-
-  const addFavorite = (props) => {
-    console.log("works");
-    setFavorite([...favorite, props]);
+  // const initialState = 0;
+  const addWishList = () => {
+    setWishList(wishList + 1);
   };
+
+  const initialState = () => Number(window.localStorage.getItem("key")) || 0;
+
+  const [favorite, setFavorite] = useState([]);
+  const [checked, setChecked] = useState(false);
+  const [wishList, setWishList] = useState(initialState);
+
+  useEffect(() => {
+    window.localStorage.setItem("key", JSON.stringify(wishList));
+  });
+
+  const resetWishList = () => {
+    const msg = "This will clear your wishlist, are you sure?"
+    if (window.confirm(msg)) {
+      setWishList(initialState)
+    }
+  }
 
   const useStyles = makeStyles({
     root: {
@@ -52,75 +67,97 @@ function Cards(props) {
       flexDirection: "row-reverse",
     },
   });
+  const handleChange = (event) => {
+    setChecked(event.target.checked);
+  };
 
   const classes = useStyles();
   const formatList = props.format;
-  console.log("Format", formatList);
+  // console.log("Format", formatList);
+
+  const addFavorite = (props) => {
+    console.log("works");
+    setFavorite([...favorite, props]);
+    // console.log(setFavorite(props));
+  };
 
   return (
-    <ThemeProvider theme={theme}>
-      <Card className={classes.root}>
-        <Link
-          variant="body2"
-          to={`/detail/${props.id}/${props.type}`}
-          style={{ textDecoration: "none" }}
-        >
-          <CardActionArea>
-            <div className={classes.details}>
-              <CardMedia className={classes.media} image={props.cover_image} />
-              <CardContent className={classes.content}>
-                <Typography
-                  gutterBottom
-                  variant="h5"
-                  component="h1"
-                  align="left"
-                >
-                  {props.title}
-                </Typography>
-                <Typography
-                  align="left"
-                  variant="body2"
-                  component="p"
-                  display="block"
-                >
-                  Type: {props.type}
-                </Typography>
-                <Typography
-                  align="left"
-                  variant="body2"
-                  component="p"
-                  display="block"
-                >
-                  Year: {props.year}
-                </Typography>
-                <Typography
-                  align="left"
-                  variant="body2"
-                  component="p"
-                  display="block"
-                >
-                  Format:{formatList && formatList.join(" , ")}
-                </Typography>
-              </CardContent>
-            </div>
-          </CardActionArea>
-        </Link>
-        <CardActions className={classes.actions} justifyContent="flex-end">
-          <p>favorites: {favorite.length}</p>
-          <Button variant="text" size="small" color="black">
-            Share
-          </Button>
-          <Button
-            variant="text"
-            size="small"
-            color="black"
-            onClick={() => addFavorite(props)}
+    <div>
+      <h1>Your Wishlist:{wishList}</h1>
+      <ThemeProvider theme={theme}>
+        <Card className={classes.root}>
+          <Link
+            variant="body2"
+            to={`/detail/${props.id}/${props.type}`}
+            style={{ textDecoration: "none" }}
           >
-            Save Favorite
-          </Button>
-        </CardActions>
-      </Card>
-    </ThemeProvider>
+            <CardActionArea>
+              <div className={classes.details}>
+                <CardMedia
+                  className={classes.media}
+                  image={props.cover_image}
+                />
+                <CardContent className={classes.content}>
+                  <Typography
+                    gutterBottom
+                    variant="h5"
+                    component="h1"
+                    align="left"
+                  >
+                    {props.title}
+                  </Typography>
+                  <Typography
+                    align="left"
+                    variant="body2"
+                    component="p"
+                    display="block"
+                  >
+                    Type: {props.type}
+                  </Typography>
+                  <Typography
+                    align="left"
+                    variant="body2"
+                    component="p"
+                    display="block"
+                  >
+                    Year: {props.year}
+                  </Typography>
+                  <Typography
+                    align="left"
+                    variant="body2"
+                    component="p"
+                    display="block"
+                  >
+                    Format:{formatList && formatList.join(" , ")}
+                  </Typography>
+                </CardContent>
+              </div>
+            </CardActionArea>
+          </Link>
+          <CardActions className={classes.actions} justifyContent="flex-end">
+            <p>favorites: {favorite.length}</p>
+            <Button variant="text" size="small" color="black">
+              Share
+            </Button>
+            <Button
+              variant="text"
+              size="small"
+              color="black"
+              onClick={() => addFavorite(props)}
+            >
+              Save Favorite
+            </Button>
+            {/* <Checkbox
+            checked={checked}
+            onChange={handleChange}
+            onChange={()=>addWishList(1)}
+            inputProps={{ "aria-label": "primary checkbox" }}
+          /> */}
+            <button onClick={() => addWishList()}>add</button>
+          </CardActions>
+        </Card>
+      </ThemeProvider>
+    </div>
   );
 }
 

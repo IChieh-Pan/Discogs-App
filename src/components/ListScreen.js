@@ -6,17 +6,16 @@ import { DiscogsListContext } from "../context/DiscogsListContext";
 import Spinner from "./Spinner";
 
 function ListScreen() {
-  const { results, setResults, loading, type } = useContext(DiscogsListContext);
+  const { results, setResults, loading, type} = useContext(DiscogsListContext);
 
 
   const newResult = results.filter((result) => {
     return result.type === type;
-    });
-       
+  });
 
   const style = {
-    marginTop: '10px'
-  }
+    marginTop: "10px",
+  };
 
   return (
     <div>
@@ -33,6 +32,8 @@ function ListScreen() {
               country,
               year,
               format,
+              favorite,
+              setFavorite,
             } = result;
             return (
               <Cards
@@ -44,6 +45,8 @@ function ListScreen() {
                 country={country}
                 year={year}
                 format={format}
+                favorite={favorite}
+                setFavorite={setFavorite}
               />
             );
           })

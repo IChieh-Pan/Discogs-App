@@ -27,17 +27,18 @@ function BottomNav() {
 
   const handleChange = (newValue) => {
     setValue(newValue);
-    if (newValue === 0) {
+    if (newValue === 3) {
       setType("label");
-    } if (newValue === 1) {
-      setType("release")
     }
     if (newValue === 2) {
-      setType("master")
+      setType("release");
     }
-      if (newValue === 3 ) {
-        setType("artist")
-      }
+    if (newValue === 1) {
+      setType("master");
+    }
+    if (newValue === 0) {
+      setType("artist");
+    }
   };
 
   /* results.map((results) => {
@@ -64,10 +65,18 @@ function BottomNav() {
       showLabels
       className={classes.root}
     >
-      <BottomNavigationAction label="Label" icon={<LocalOfferIcon />} />
-      <BottomNavigationAction label="Release" icon={<AudiotrackIcon />} />
-      <BottomNavigationAction label="Master" icon={<AlbumIcon />} />
-      <BottomNavigationAction label="Artist" icon={<FaceIcon />} />
+      <BottomNavigationAction
+        label="Label"
+        icon={<LocalOfferIcon />}
+        value={3}
+      />
+      <BottomNavigationAction
+        label="Release"
+        icon={<AudiotrackIcon />}
+        value={2}
+      />
+      <BottomNavigationAction label="Master" icon={<AlbumIcon />} value={1} />
+      <BottomNavigationAction label="Artist" icon={<FaceIcon />} value={0} />
     </BottomNavigation>
   );
 }

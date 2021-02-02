@@ -1,5 +1,5 @@
 import "./App.css";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ListScreen from "./components/ListScreen";
 import { DiscogsProvider } from "./context/DiscogsListContext";
 import CardDetail from "./components/Cards";
@@ -17,6 +17,11 @@ import { AuthProvider } from "./components/Auth";
 import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
+  
+
+
+ 
+
   return (
     // <ThemeProvider >
     <AuthProvider>

@@ -10,13 +10,12 @@ export const DiscogsProvider = (props) => {
   // const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
   // const [err, setErr] = useState({});
-  const [type, setType] = useState("");
-
+  const [type, setType] = useState("artist");
+  // const [favorite, setFavorite] = useState([0]);
 
   useEffect(() => {
-    fetchData("");  
+    fetchData("");
   }, [null]);
-
 
   const fetchData = async (search) => {
     try {
@@ -33,10 +32,6 @@ export const DiscogsProvider = (props) => {
 
       const results = data.results;
       console.log("resultsperpage", results);
-  
-
-
-
 
       const item = results[12];
       console.log("item", item);
@@ -45,7 +40,8 @@ export const DiscogsProvider = (props) => {
       setResults(results);
       setPagination(pagination);
       setItem(item);
-      
+      // setFavorite(favorite);
+
       // setSearch(search);
     } catch (err) {
       alert(err);
@@ -67,7 +63,9 @@ export const DiscogsProvider = (props) => {
     loading,
     setLoading,
     type,
-    setType
+    setType,
+    /* favorite,
+    setFavorite */
   };
 
   return (
