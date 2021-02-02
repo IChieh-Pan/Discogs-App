@@ -4,9 +4,13 @@ import Cards from "./Cards";
 import Grid from "@material-ui/core/Grid";
 import { DiscogsListContext } from "../context/DiscogsListContext";
 import Spinner from "./Spinner";
+import { AuthContext } from "./Auth";
 
 function ListScreen() {
-  const { results, setResults, loading, type} = useContext(DiscogsListContext);
+  const { results, setResults, loading, type } = useContext(DiscogsListContext);
+  const { addFavorite } = useContext(
+    AuthContext
+  );
 
 
   const newResult = results.filter((result) => {
@@ -31,9 +35,8 @@ function ListScreen() {
               type,
               country,
               year,
-              format,
-              favorite,
-              setFavorite,
+              format
+            
             } = result;
             return (
               <Cards
@@ -45,8 +48,8 @@ function ListScreen() {
                 country={country}
                 year={year}
                 format={format}
-                favorite={favorite}
-                setFavorite={setFavorite}
+                //favorite={favorite}
+                addFavorite={addFavorite}
               />
             );
           })

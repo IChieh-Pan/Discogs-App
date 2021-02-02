@@ -75,11 +75,13 @@ function Cards(props) {
   const formatList = props.format;
   // console.log("Format", formatList);
 
-  const addFavorite = (props) => {
-    console.log("works");
-    setFavorite([...favorite, props]);
-    // console.log(setFavorite(props));
-  };
+  // const addFavorite = (id) => {
+
+  //   addFavorite(id)
+  //   console.log("works");
+  //   //setFavorite([...favorite, props]);
+  //   // console.log(setFavorite(props));
+  // };
 
   return (
     <div>
@@ -143,7 +145,7 @@ function Cards(props) {
               variant="text"
               size="small"
               color="black"
-              onClick={() => addFavorite(props)}
+              onClick={() => props.addFavorite(props.id)}
             >
               Save Favorite
             </Button>

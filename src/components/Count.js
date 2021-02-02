@@ -13,14 +13,14 @@ function Count() {
     justifyContent: "flex-end",
   };
 
-  const handleResetWishList = () => {
+/*   const handleResetWishList = () => {
     resetWishList()
-  }
+  } */
 
 
   return (
     <div style={style}>
-      <button onClick= {handleResetWishList()}>Cleaer</button>
+      <button /* onClick= {handleResetWishList()} */>Cleaer</button>
       <h3>{pagination.items} </h3>
       <h6>search results</h6>
     </div>
