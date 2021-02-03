@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
 import { DiscogsListContext } from "../context/DiscogsListContext";
-import Cards from "./Cards";
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -17,7 +16,6 @@ function Detail({ id, type }) {
   const [hasProfile, setHasProfile] = useState(false);
   console.log("id", id);
   console.log("type", type);
-
 
   useEffect(() => {
     fetchData();
@@ -38,17 +36,17 @@ function Detail({ id, type }) {
 
   return (
     <div>
-      {hasTrackList && ( 
-          <ol textAlign="left">
-            {data.tracklist.map((track, index) => (
-              <li key={index}>
-                {" "}
-                {track.title}, {track.duration}{" "}
-              </li>
-            ))}
-          </ol>
+      {hasTrackList && (
+        <ol textAlign="left">
+          {data.tracklist.map((track, index) => (
+            <li key={index}>
+              {" "}
+              {track.title}, {track.duration}{" "}
+            </li>
+          ))}
+        </ol>
       )}
-      {hasProfile && <p >{data.profile}</p>}
+      {hasProfile && <p>{data.profile}</p>}
       <h1>{data.uri}</h1>
     </div>
   );

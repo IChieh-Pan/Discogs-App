@@ -85,7 +85,7 @@ function Cards(props) {
 
   return (
     <div>
-      <h1>Your Wishlist:{wishList}</h1>
+      {/* <h1>Your Wishlist:{wishList}</h1> */}
       <ThemeProvider theme={theme}>
         <Card className={classes.root}>
           <Link

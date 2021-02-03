@@ -21,7 +21,7 @@ export const DiscogsProvider = (props) => {
     try {
       setLoading(true);
       const response = await fetch(
-        `https://api.discogs.com//database/search?q=${search}&key=bsJCAGTsbOBTVFHLLILq&secret=fWchXQtBWETnYKeYagJLnBTqmWaaUokV`
+        `https://api.discogs.com//database/search?q=${search}&key=VQHnrRzlIkrymNpfRKaL&secret=KSDPUvXXFANxhBAjuHJAlXUMIFhMbite`
       );
       const data = await response.json();
       setLoading(false);

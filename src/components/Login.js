@@ -1,7 +1,7 @@
 import React, { useCallback, useContext } from "react";
 import { withRouter, Redirect } from "react-router";
 import app from "./firebase";
-import { AuthContext } from "./Auth";
+import { AuthContext } from "../context/Auth";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";

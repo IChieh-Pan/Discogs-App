@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import "fontsource-roboto";
-import Cards from "./Cards";
+import Cards from "./Card";
 import Grid from "@material-ui/core/Grid";
 import { DiscogsListContext } from "../context/DiscogsListContext";
 import Spinner from "./Spinner";
-import { AuthContext } from "./Auth";
+import { AuthContext } from "../context/Auth";
 
 function ListScreen() {
   const { results, setResults, loading, type } = useContext(DiscogsListContext);
