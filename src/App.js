@@ -12,9 +12,9 @@ import BottomNav from "../src/components/BottomNav";
 import TopBar from "./components/TopBar";
 import SignUp from "./components/SignUp";
 import Login from "./components/Login";
-import { AuthProvider } from "./context/Auth";
+// import { AuthProvider } from "./context/Auth";
 import PrivateRoute from "./components/PrivateRoute";
-
+import { AuthProvider } from "./context/AuthContex";
 
 function App() {
   return (

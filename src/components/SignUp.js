@@ -1,6 +1,6 @@
-import React, { useCallback } from "react";
+import React, { useContext } from "react";
 import { withRouter } from "react-router";
-// import { AuthContext } from "./Auth";
+import { AuthContext } from "../context/AuthContex";
 import app from "./firebase";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -33,8 +33,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SignUp = ({ history }) => {
-  const classes = useStyles();
+const SignUp = () => {
+   const [state, setState] = useState({email:"", password:"", name:""})
+   const { signUp } = useContext(AuthContext);
+
+  const handleSignUp = (event) => {
+    setState({ ...state, [event.target.name]: e.target.value})
+    /* event.preventDefault();
+    console.log('event.target', event.target)
+    const { email, password } = event.target.elements; */
+
+    try {
+      await app.auth().
+    }
+}
+  
+  /* const classes = useStyles();
 
   const handleSignUp = useCallback(
     async (event) => {
@@ -52,7 +66,7 @@ const SignUp = ({ history }) => {
       }
     },
     [history]
-  );
+  ); */
 
   //   export default function SignIn() {
 
@@ -60,9 +74,6 @@ const SignUp = ({ history }) => {
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-        {/*         <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar> */}
         <Typography component="h1" variant="h5">
           Sign Up
         </Typography>
