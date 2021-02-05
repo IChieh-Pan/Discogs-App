@@ -8,10 +8,9 @@ import { AuthContext } from "../context/Auth";
 
 function ListScreen() {
   const { results, setResults, loading, type } = useContext(DiscogsListContext);
-  const { addFavorite } = useContext(
+  /* const { addFavorite } = useContext(
     AuthContext
-  );
-
+  ); */
 
   const newResult = results.filter((result) => {
     return result.type === type;
@@ -35,8 +34,7 @@ function ListScreen() {
               type,
               country,
               year,
-              format
-            
+              format,
             } = result;
             return (
               <Cards
@@ -49,7 +47,7 @@ function ListScreen() {
                 year={year}
                 format={format}
                 //favorite={favorite}
-                addFavorite={addFavorite}
+                // addFavorite={addFavorite}
               />
             );
           })

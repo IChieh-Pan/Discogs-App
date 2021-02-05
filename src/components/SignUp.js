@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { withRouter } from "react-router";
 import { AuthContext } from "../context/AuthContex";
 import app from "./firebase";
@@ -34,41 +34,20 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SignUp = () => {
-   const [state, setState] = useState({email:"", password:"", name:""})
-   const { signUp } = useContext(AuthContext);
+  const [state, setState] = useState({ email: "", password: "", username: "" });
+  const { signUp } = useContext(AuthContext);
+
+  const handleChange = (event) => {
+    console.log(handleChange);
+    setState({ ...state, [event.target.name]: event.target.value });
+  };
 
   const handleSignUp = (event) => {
-    setState({ ...state, [event.target.name]: e.target.value})
-    /* event.preventDefault();
-    console.log('event.target', event.target)
-    const { email, password } = event.target.elements; */
+    event.preventDefault();
+    signUp(state);
+  };
 
-    try {
-      await app.auth().
-    }
-}
-  
-  /* const classes = useStyles();
-
-  const handleSignUp = useCallback(
-    async (event) => {
-      event.preventDefault();
-      console.log(event.target);
-      const { email, password } = event.target.elements;
-
-      try {
-        await app
-          .auth()
-          .createUserWithEmailAndPassword(email.value, password.value);
-        history.push("/");
-      } catch (error) {
-        alert(error);
-      }
-    },
-    [history]
-  ); */
-
-  //   export default function SignIn() {
+  const classes = useStyles();
 
   return (
     <Container component="main" maxWidth="xs">
@@ -83,12 +62,27 @@ const SignUp = () => {
             margin="normal"
             required
             fullWidth
+            id="username"
+            type="username"
+            label="Name"
+            name="username"
+            autoComplete="Name"
+            autoFocus
+            onChange={handleChange}
+            value={state.username}
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
             id="email"
             type="email"
             label="Email Address"
             name="email"
             autoComplete="email"
-            autoFocus
+            onChange={handleChange}
+            value={state.email}
           />
           <TextField
             variant="outlined"
@@ -100,6 +94,8 @@ const SignUp = () => {
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={handleChange}
+            value={state.password}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}

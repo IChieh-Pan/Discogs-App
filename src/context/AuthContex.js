@@ -2,8 +2,6 @@ import React, { useState, createContext } from "react";
 import { useHistory } from "react-router-dom";
 import app from "../components/firebase";
 
-export const AuthContext = createContext(initContext);
-
 const initContext = {
   user: null,
   signUp: () => {
@@ -17,13 +15,15 @@ const initContext = {
   },
 };
 
+export const AuthContext = createContext(initContext);
+
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loggedIn, setLoggedIn] = useState(false);
   const history = useHistory();
   const db = app.firestore();
 
-  const signUp = () => {
+  const signUp = ({ email, password, username }) => {
     app
       .auth()
       .createUserWithEmailAndPassword(email, password)
@@ -31,6 +31,7 @@ export const AuthProvider = ({ children }) => {
         // Signed in
         let user = userCredential.user;
         console.log("user", user);
+        // alert("User sign up successfully!");
         setUser(user);
         setLoggedIn(true);
 
@@ -50,11 +51,11 @@ export const AuthProvider = ({ children }) => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        // ..
+        console.log("error creating user...", errorMessage);
       });
   };
 
-  const logIn = () => {
+  const logIn = async ({ email, password }) => {
     app
       .auth()
       .signInWithEmailAndPassword(email, password)
@@ -78,13 +79,13 @@ export const AuthProvider = ({ children }) => {
         const userRef = db.collection("users").doc(user.uid);
         return userRef
           .update({
-            regions: firebase.firestore.FieldValue.arrayUnion(addItem),
+            regions: app.firestore.FieldValue.arrayUnion(addItem),
           })
           .then(() => {
-            alert("Update Success!");
+            console.log("Update Success!");
           })
           .catch((error) => {
-            alert("Error when adding item", error);
+            console.log("Error when adding item", error);
           });
       } else {
         history.push("/login");

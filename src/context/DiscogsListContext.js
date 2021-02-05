@@ -25,6 +25,7 @@ export const DiscogsProvider = (props) => {
       );
       const data = await response.json();
       setLoading(false);
+      
 
       // console.log("data", data);
       const pagination = data.pagination;
@@ -36,6 +37,8 @@ export const DiscogsProvider = (props) => {
       const item = results[12];
       console.log("item", item);
       console.log("type", item.type);
+
+
 
       setResults(results);
       setPagination(pagination);
