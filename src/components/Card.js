@@ -11,10 +11,36 @@ import { Link } from "react-router-dom";
 import { grey, deepOrange } from "@material-ui/core/colors";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Checkbox from "@material-ui/core/Checkbox";
-import { theme } from "../context/ThemeContext";
 
+export const theme = createMuiTheme({
+  typography: {
+    fontFamily: "Barlow Condensed",
+    h5: {
+      fontFamily: "Barlow Condensed",
+      fontWeight: 500,
+      lineHeight: 1.167,
+      fontSize: "1.4rem",
+      color: "#000000",
+    },
+    body2: {
+      fontFamily: "Barlow Condensed",
+      fontWeight: 300,
+      lineHeight: 1.167,
+      fontSize: "1.4rem",
+      color: "#000000",
+    },
+    button: {
+      border: "0.5px",
+      borderColor: "#e7e7e7",
+      borderStyle: "solid",
+      color: "secondary",
+    },
+  },
+});
 
+/* const useStyles = makeStyels({
 
+}) */
 /* const theme = createMuiTheme({
   typography: {
     h5: {
@@ -103,12 +129,7 @@ function Cards(props) {
                   image={props.cover_image}
                 />
                 <CardContent className={classes.content}>
-                  <Typography
-                    gutterBottom
-                    variant="h5"
-                    component="h1"
-                    align="left"
-                  >
+                  <Typography gutterBottom variant="h5" align="left">
                     {props.title}
                   </Typography>
                   <Typography
