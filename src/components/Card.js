@@ -11,19 +11,22 @@ import { Link } from "react-router-dom";
 import { grey, deepOrange } from "@material-ui/core/colors";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Checkbox from "@material-ui/core/Checkbox";
+import { theme } from "../context/ThemeContext";
 
-const theme = createMuiTheme({
+
+
+/* const theme = createMuiTheme({
   typography: {
     h5: {
       color: "black",
-      fontWeight: 400, // or 'bold'
+      fontWeight: 200, // or 'bold'
     },
     body2: {
       color: "black",
       fontWeight: 400,
     },
   },
-});
+}); */
 
 function Cards(props) {
   // const initialState = 0;
@@ -42,11 +45,11 @@ function Cards(props) {
   });
 
   const resetWishList = () => {
-    const msg = "This will clear your wishlist, are you sure?"
+    const msg = "This will clear your wishlist, are you sure?";
     if (window.confirm(msg)) {
-      setWishList(initialState)
+      setWishList(initialState);
     }
-  }
+  };
 
   const useStyles = makeStyles({
     root: {

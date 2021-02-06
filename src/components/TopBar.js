@@ -16,9 +16,13 @@ import MailIcon from "@material-ui/icons/Mail";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import Button from "@material-ui/core/Button";
+import { borders } from "@material-ui/system";
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    /* border: "1px",
+    borderColor: "black",
+    borderStyle: "solid", */
     width: "100%",
     position: "fixed",
     top: 0,
@@ -60,7 +64,10 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
   },
   inputRoot: {
-    color: "inherit",
+    border: "1px",
+    borderColor: "#e7e7e7",
+    borderStyle: "solid",
+    color: "primary",
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
@@ -208,9 +215,15 @@ function TopBar() {
               inputProps={{ "aria-label": "search" }}
               onChange={searchHandler}
               value={search}
+              style={{ borderRadius: "4px" }}
             />
           </div>
-          <Button variant="contained" color="primary" onClick={searchSubmit}>
+          <Button
+            className={classes.button}
+            variant="contained"
+            color="secondary"
+            onClick={searchSubmit}
+          >
             GO
           </Button>
           <div className={classes.grow} />

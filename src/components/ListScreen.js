@@ -5,6 +5,7 @@ import Grid from "@material-ui/core/Grid";
 import { DiscogsListContext } from "../context/DiscogsListContext";
 import Spinner from "./Spinner";
 import { AuthContext } from "../context/Auth";
+import Box from "@material-ui/core/Box";
 
 function ListScreen() {
   const { results, setResults, loading, type } = useContext(DiscogsListContext);
@@ -18,10 +19,11 @@ function ListScreen() {
 
   const style = {
     marginTop: "10px",
+    justifyContent: "center",
   };
 
   return (
-    <div>
+    <Box ml={8} pt={3}>
       <Grid container style={style}>
         {loading ? (
           <Spinner />
@@ -53,7 +55,7 @@ function ListScreen() {
           })
         )}
       </Grid>
-    </div>
+    </Box>
   );
 }
 

@@ -12,19 +12,29 @@ import BottomNav from "../src/components/BottomNav";
 import TopBar from "./components/TopBar";
 import SignUp from "./components/SignUp";
 import Login from "./components/Login";
-// import { AuthProvider } from "./context/Auth";
 import PrivateRoute from "./components/PrivateRoute";
 import { AuthProvider } from "./context/AuthContex";
+import { ThemeProvider, Button } from "@material-ui/core";
+import { theme } from "./context/ThemeContext.js";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import MyCssBaseline from "./components/MyCssBaseline";
 
 function App() {
   return (
-    // <ThemeProvider >
-    <AuthProvider>
-      <BrowserRouter>
-        <Switch>
-          <DiscogsProvider>
-            <div className="App">
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <MyCssBaseline />
+      <AuthProvider>
+        <BrowserRouter>
+          <Switch>
+            <DiscogsProvider>
               <TopBar />
+              <Button variant="contained" color="primary">
+                test{" "}
+              </Button>
+              <Button variant="contained" color="secondary">
+                test{" "}
+              </Button>
               <Count />
 
               <Route exact path="/" component={ListScreen} />
@@ -42,12 +52,11 @@ function App() {
               {/* <DetailScreen />
             <DetailContext /> */}
               <BottomNav />
-            </div>
-          </DiscogsProvider>
-        </Switch>
-      </BrowserRouter>
-      {/* </ThemeProvider> */}
-    </AuthProvider>
+            </DiscogsProvider>
+          </Switch>
+        </BrowserRouter>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
 
