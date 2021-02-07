@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     position: "fixed",
     top: 0,
-    backgroundColor: "#ffffff",
+    backgroundColor: "#000000",
   },
   grow: {
     flexGrow: 1,
@@ -68,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
     border: "1px",
     borderColor: "#e7e7e7",
     borderStyle: "solid",
-    color: "#ffffff",
+    color: "#000000",
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),

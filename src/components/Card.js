@@ -78,7 +78,7 @@ function Cards(props) {
       marginBottom: "1.5rem",
       marginRight: "1.5rem",
       display: "flex",
-      // flexDirection: "row",
+      flexDirection: "row",
     },
     /* details: {
       display: "flex",
@@ -87,18 +87,40 @@ function Cards(props) {
     content: {
       width: 400,
       height: 130,
-      backgroundColor: "#FBE4ED",
+      backgroundColor: "#FFD9E8" /* "#FFE1ED" */,
     },
     media: {
+      width: "100%",
+      height: "100%",
+      opacity: 1,
+      // mixBlendMode: "multiply",
+      position: "relative",
+      objectFit: "cover",
+    },
+    overlay: {
+      // position: "absolute",
+      objectFit: "contain",
+      width: "100%",
+      backgroundColor: "#FDBCD5",
+    },
+    image: {
       width: 200,
       height: 160,
-      opacity: 0.9,
+      position: "relative",
+      objectFit: "cover",
+      mixBlendMode: "multiply",
+      filter: "grayscale(100%)",
     },
     actions: {
       display: "flex",
       flexDirection: "row-reverse",
-      backgroundColor: "#FBE4ED",
       height: 30,
+      backgroundColor: "#FFD9E8",
+    },
+    container: {
+      width: 200,
+      height: 160,
+      backgroundColor: "#FDBCD5",
     },
   });
   const handleChange = (event) => {
@@ -122,12 +144,20 @@ function Cards(props) {
       {/* <h1>Your Wishlist:{wishList}</h1> */}
       <ThemeProvider theme={theme}>
         <Card className={classes.root} elevation={0}>
-          <CardMedia
-            className={classes.media}
-            component="img"
-            alt={props.title}
-            image={props.cover_image}
-          />
+          {/* <div mixBlendMode="multiply"> */}
+          <div className={classes.container}>
+            {/* <div className={classes.overlay}> */}
+            <div className={classes.image}>
+              <CardMedia
+                className={classes.media}
+                component="img"
+                alt={props.title}
+                image={props.cover_image}
+              />
+            </div>
+            {/* </div> */}
+          </div>
+
           {/* <CardActionArea> */}
           <Link
             variant="body2"
