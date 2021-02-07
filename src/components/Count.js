@@ -22,9 +22,7 @@ function Count() {
       <button /* onClick= {handleResetWishList()} */>Cleaer</button>
       <h3>{pagination.items} </h3>
       <h1>Alomst</h1>
-      <Button variant="contained" color="primary">
-        test{" "}
-      </Button>
+
     </div>
   );
 }

@@ -34,19 +34,19 @@ export const theme = createMuiTheme({
   },
   palette: {
     background: {
-      xs: "#080808",
-      sm: "blue",
-      md: "white",
+      /* xs: "#080808",
+      sm: "blue", */
+      md: "#f8f8f8",
     },
     primary: {
       // light: will be calculated from palette.primary.main,
-      main: "#EFEFEF",
+      main: "#FF6AA4",
       // dark: will be calculated from palette.primary.main,
       // contrastText: will be calculated to contrast with palette.primary.main
     },
     secondary: {
       // light: yellow[700],
-      main: "#D8D1F4",
+      main: "#000000",
       // dark: will be calculated from palette.secondary.main,
       contrastText: "#000000",
     },
@@ -58,8 +58,8 @@ export const theme = createMuiTheme({
     // E.g., shift from Red 500 to Red 300 or Red 700.
     tonalOffset: 0.2,
   },
-  shadows: ["none"],
-  zDepthShadows: ["none"],
+  // shadows: ["none"],
+  // zDepthShadows: ["none"],
 });
 /*   return (
     <ThemeProvider theme={theme}>{childern}</ThemeProvider>

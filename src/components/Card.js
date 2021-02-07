@@ -11,48 +11,42 @@ import { Link } from "react-router-dom";
 import { grey, deepOrange } from "@material-ui/core/colors";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Checkbox from "@material-ui/core/Checkbox";
+import Box from "@material-ui/core/Box";
 
 export const theme = createMuiTheme({
   typography: {
     fontFamily: "Barlow Condensed",
     h5: {
-      fontFamily: "Barlow Condensed",
-      fontWeight: 500,
+      fontFamily: "IBM Plex Sans",
+      fontWeight: 700,
       lineHeight: 1.167,
       fontSize: "1.4rem",
       color: "#000000",
+      // backgroundColor: "#FED82A",
     },
     body2: {
-      fontFamily: "Barlow Condensed",
+      fontFamily: "IBM Plex Sans",
       fontWeight: 300,
-      lineHeight: 1.167,
-      fontSize: "1.4rem",
+      lineHeight: 1.4,
+      fontSize: "1.1rem",
       color: "#000000",
     },
     button: {
-      border: "0.5px",
+      /*       border: "0.5px",
+      borderStyle: "solid", */
       borderColor: "#e7e7e7",
-      borderStyle: "solid",
-      color: "secondary",
+      color: "#000000",
     },
   },
+  shape: {
+    borderRadius: 4,
+  },
+  /*  shadows: [
+    3: {
+     0 5px 10px rgba(154,160,185,.05), 0 15px 40px rgba(166,173,201,.2);
+   } 
+  ] */
 });
-
-/* const useStyles = makeStyels({
-
-}) */
-/* const theme = createMuiTheme({
-  typography: {
-    h5: {
-      color: "black",
-      fontWeight: 200, // or 'bold'
-    },
-    body2: {
-      color: "black",
-      fontWeight: 400,
-    },
-  },
-}); */
 
 function Cards(props) {
   // const initialState = 0;
@@ -80,20 +74,31 @@ function Cards(props) {
   const useStyles = makeStyles({
     root: {
       maxWidth: 800,
+      height: 160,
+      marginBottom: "1.5rem",
+      marginRight: "1.5rem",
+      display: "flex",
+      // flexDirection: "row",
     },
-    details: {
+    /* details: {
       display: "flex",
       flexDirection: "row",
-    },
+    }, */
     content: {
       width: 400,
+      height: 130,
+      backgroundColor: "#FBE4ED",
     },
     media: {
       width: 200,
+      height: 160,
+      opacity: 0.9,
     },
     actions: {
       display: "flex",
       flexDirection: "row-reverse",
+      backgroundColor: "#FBE4ED",
+      height: 30,
     },
   });
   const handleChange = (event) => {
@@ -116,71 +121,74 @@ function Cards(props) {
     <div>
       {/* <h1>Your Wishlist:{wishList}</h1> */}
       <ThemeProvider theme={theme}>
-        <Card className={classes.root}>
+        <Card className={classes.root} elevation={0}>
+          <CardMedia
+            className={classes.media}
+            component="img"
+            alt={props.title}
+            image={props.cover_image}
+          />
+          {/* <CardActionArea> */}
           <Link
             variant="body2"
             to={`/detail/${props.id}/${props.type}`}
             style={{ textDecoration: "none" }}
           >
-            <CardActionArea>
-              <div className={classes.details}>
-                <CardMedia
-                  className={classes.media}
-                  image={props.cover_image}
-                />
-                <CardContent className={classes.content}>
-                  <Typography gutterBottom variant="h5" align="left">
-                    {props.title}
-                  </Typography>
-                  <Typography
-                    align="left"
-                    variant="body2"
-                    component="p"
-                    display="block"
-                  >
-                    Type: {props.type}
-                  </Typography>
-                  <Typography
-                    align="left"
-                    variant="body2"
-                    component="p"
-                    display="block"
-                  >
-                    Year: {props.year}
-                  </Typography>
-                  <Typography
-                    align="left"
-                    variant="body2"
-                    component="p"
-                    display="block"
-                  >
-                    Format:{formatList && formatList.join(" , ")}
-                  </Typography>
-                </CardContent>
-              </div>
-            </CardActionArea>
-          </Link>
-          <CardActions className={classes.actions} justifyContent="flex-end">
-            <p>favorites: {favorite.length}</p>
-            <Button variant="text" size="small" color="black">
-              Share
-            </Button>
-            <Button
-              variant="text"
-              size="small"
-              color="black"
-              onClick={() => props.addFavorite(props.id)}
-            >
-              Save Favorite
-            </Button>
-            {/* <Checkbox
+            {/* <div className={classes.details}> */}
+            <CardContent className={classes.content}>
+              <Typography gutterBottom variant="h5" align="left">
+                <Box>{props.title}</Box>
+              </Typography>
+              <Typography
+                align="left"
+                variant="body2"
+                component="p"
+                display="block"
+              >
+                Type: {props.type}
+              </Typography>
+              <Typography
+                align="left"
+                variant="body2"
+                component="p"
+                display="block"
+              >
+                Year: {props.year}
+              </Typography>
+              <Typography
+                align="left"
+                variant="body2"
+                component="p"
+                display="block"
+              >
+                Format:{formatList && formatList.join(" , ")}
+              </Typography>
+            </CardContent>
+            {/* </div> */}
+
+            <div className={classes.actions} justifyContent="flex-end">
+              {/* <p>favorites: {favorite.length}</p> */}
+              <Button variant="text" size="small" color="black">
+                Share
+              </Button>
+              {/* <Button
+                variant="text"
+                size="small"
+                color="black"
+                onClick={() => props.addFavorite(props.id)}
+              >
+                Save Favorite
+              </Button> */}
+              {/* <Checkbox
             checked={checked}
             onChange={handleChange}
             onChange={()=>addWishList(1)}
             inputProps={{ "aria-label": "primary checkbox" }}
           /> */}
-            <button onClick={() => addWishList()}>add</button>
-          </CardActions>
+              {/* <button onClick={() => addWishList()}>add</button> */}
+            </div>
+          </Link>
+          {/* </CardActionArea> */}
         </Card>
       </ThemeProvider>
     </div>

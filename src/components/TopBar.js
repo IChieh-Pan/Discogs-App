@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     position: "fixed",
     top: 0,
+    backgroundColor: "#ffffff",
   },
   grow: {
     flexGrow: 1,
@@ -67,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
     border: "1px",
     borderColor: "#e7e7e7",
     borderStyle: "solid",
-    color: "primary",
+    color: "#ffffff",
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
@@ -158,16 +159,16 @@ function TopBar() {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="secondary">
+        <IconButton aria-label="show 4 new mails" color="primary">
+          <Badge badgeContent={4} color="primary">
             <MailIcon />
           </Badge>
         </IconButton>
         <p>Messages</p>
       </MenuItem>
       <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="inherit">
-          <Badge badgeContent={11} color="secondary">
+        <IconButton aria-label="show 11 new notifications" color="primary">
+          <Badge badgeContent={11} color="primary">
             <NotificationsIcon />
           </Badge>
         </IconButton>
@@ -176,7 +177,7 @@ function TopBar() {
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
           aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
+          aria-controls="secondary-search-account-menu"
           aria-haspopup="true"
           color="inherit"
         >
@@ -215,14 +216,15 @@ function TopBar() {
               inputProps={{ "aria-label": "search" }}
               onChange={searchHandler}
               value={search}
-              style={{ borderRadius: "4px" }}
+              style={{ borderRadius: "5rem" }}
             />
           </div>
           <Button
-            className={classes.button}
-            variant="contained"
+            // className={classes.button}
+            variant="text"
             color="secondary"
             onClick={searchSubmit}
+            style={{ borderRadius: "5rem" }}
           >
             GO
           </Button>

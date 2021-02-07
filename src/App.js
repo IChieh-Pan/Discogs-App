@@ -29,12 +29,6 @@ function App() {
           <Switch>
             <DiscogsProvider>
               <TopBar />
-              <Button variant="contained" color="primary">
-                test{" "}
-              </Button>
-              <Button variant="contained" color="secondary">
-                test{" "}
-              </Button>
               <Count />
 
               <Route exact path="/" component={ListScreen} />

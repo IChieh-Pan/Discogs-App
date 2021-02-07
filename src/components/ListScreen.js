@@ -19,12 +19,12 @@ function ListScreen() {
 
   const style = {
     marginTop: "10px",
-    justifyContent: "center",
+    display: "flex",
   };
 
   return (
     <Box ml={8} pt={3}>
-      <Grid container style={style}>
+      <Grid container style={style} alignItems="flex-start">
         {loading ? (
           <Spinner />
         ) : (
