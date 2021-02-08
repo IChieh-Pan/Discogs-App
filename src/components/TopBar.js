@@ -17,6 +17,9 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import Button from "@material-ui/core/Button";
 import { borders } from "@material-ui/system";
+import { useHistory } from "react-router-dom";
+import { AuthContext } from "../context/AuthContex";
+import Link from "@material-ui/core/Link";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
     display: "none",
     [theme.breakpoints.up("sm")]: {
       display: "block",
+      color: "#ffffff",
     },
   },
   search: {
@@ -95,6 +99,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function TopBar() {
+  const { loggedIn, handleLogout, user } = useContext(AuthContext);
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
@@ -114,9 +119,8 @@ function TopBar() {
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-  const handleProfileMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+  const history = useHistory();
+  const handleLoginPage = () => history.push("/login");
 
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
@@ -174,7 +178,8 @@ function TopBar() {
         </IconButton>
         <p>Favorites</p>
       </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
+      {/* {user ? ( */}
+      <MenuItem onClick={() => handleLogout()}>
         <IconButton
           aria-label="account of current user"
           aria-controls="secondary-search-account-menu"
@@ -183,8 +188,21 @@ function TopBar() {
         >
           <AccountCircle />
         </IconButton>
-        <p>Profile</p>
+        <p>Log out</p>
       </MenuItem>
+      ) : (
+      <MenuItem onClick={() => handleLoginPage("/login")}>
+        <IconButton
+          aria-label="account of current user"
+          aria-controls="secondary-search-account-menu"
+          aria-haspopup="true"
+          color="inherit"
+        >
+          <AccountCircle />
+        </IconButton>
+        <p>Sign in</p>
+      </MenuItem>
+      )}
     </Menu>
   );
 
@@ -200,9 +218,17 @@ function TopBar() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
+          <Link
+            href="/"
+            variant="h6"
+            className={classes.title}
+            style={{ textDecoration: "none" }}
+          >
+            {"🎧 Discogs 🎧"}
+          </Link>
+          {/* <Typography className={classes.title} variant="h6" noWrap>
             🎧 &nbsp;Discogs&nbsp; 🎧
-          </Typography>
+          </Typography> */}
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
@@ -245,7 +271,7 @@ function TopBar() {
               aria-label="account of current user"
               aria-controls={menuId}
               aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
+              onClick={handleLoginPage}
               color="inherit"
             >
               <AccountCircle />

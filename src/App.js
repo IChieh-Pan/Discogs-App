@@ -4,7 +4,7 @@ import ListScreen from "./components/ListScreen";
 import { DiscogsProvider } from "./context/DiscogsListContext";
 import CardDetail from "./components/Card";
 import Count from "./components/Count";
-import { BrowserRouter, Switch, Route, useParams } from "react-router-dom";
+import { BrowserRouter, Switch, Route} from "react-router-dom";
 import Detail from "./components/Detail";
 import Typography from "@material-ui/core/Typography";
 import BotttomNav from "../src/components/BottomNav";

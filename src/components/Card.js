@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -12,6 +12,8 @@ import { grey, deepOrange } from "@material-ui/core/colors";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Checkbox from "@material-ui/core/Checkbox";
 import Box from "@material-ui/core/Box";
+import { AuthContext } from "../context/AuthContex";
+import { BrowserRouter, Switch, Route, useParams } from "react-router-dom";
 
 export const theme = createMuiTheme({
   typography: {
@@ -50,26 +52,28 @@ export const theme = createMuiTheme({
 
 function Cards(props) {
   // const initialState = 0;
-  const addWishList = () => {
+  /*  const addWishList = () => {
     setWishList(wishList + 1);
-  };
+  }; */
+  const id = props.id;
+  console.log("id", id);
 
-  const initialState = () => Number(window.localStorage.getItem("key")) || 0;
+  const { addFavorite } = useContext(AuthContext);
+  // const initialState = () => Number(window.localStorage.getItem("key")) || 0;
+  // const [favorite, setFavorite] = useState([]);
+  // const [checked, setChecked] = useState(false);
+  // const [wishList, setWishList] = useState(initialState);
 
-  const [favorite, setFavorite] = useState([]);
-  const [checked, setChecked] = useState(false);
-  const [wishList, setWishList] = useState(initialState);
-
-  useEffect(() => {
+  /*  useEffect(() => {
     window.localStorage.setItem("key", JSON.stringify(wishList));
-  });
+  }); */
 
-  const resetWishList = () => {
+  /*   const resetWishList = () => {
     const msg = "This will clear your wishlist, are you sure?";
     if (window.confirm(msg)) {
       setWishList(initialState);
     }
-  };
+  }; */
 
   const useStyles = makeStyles({
     root: {
@@ -112,6 +116,7 @@ function Cards(props) {
       filter: "grayscale(100%)",
     },
     actions: {
+      paddingRight: 10,
       display: "flex",
       flexDirection: "row-reverse",
       height: 30,
@@ -123,12 +128,13 @@ function Cards(props) {
       backgroundColor: "#FDBCD5",
     },
   });
-  const handleChange = (event) => {
+  /*   const handleChange = (event) => {
     setChecked(event.target.checked);
-  };
+  }; */
 
   const classes = useStyles();
   const formatList = props.format;
+
   // console.log("Format", formatList);
 
   // const addFavorite = (id) => {
@@ -138,15 +144,14 @@ function Cards(props) {
   //   //setFavorite([...favorite, props]);
   //   // console.log(setFavorite(props));
   // };
+  // const handleAddFavorite =
 
   return (
     <div>
       {/* <h1>Your Wishlist:{wishList}</h1> */}
       <ThemeProvider theme={theme}>
         <Card className={classes.root} elevation={0}>
-          {/* <div mixBlendMode="multiply"> */}
           <div className={classes.container}>
-            {/* <div className={classes.overlay}> */}
             <div className={classes.image}>
               <CardMedia
                 className={classes.media}
@@ -155,49 +160,58 @@ function Cards(props) {
                 image={props.cover_image}
               />
             </div>
-            {/* </div> */}
           </div>
 
           {/* <CardActionArea> */}
-          <Link
-            variant="body2"
-            to={`/detail/${props.id}/${props.type}`}
-            style={{ textDecoration: "none" }}
-          >
-            {/* <div className={classes.details}> */}
-            <CardContent className={classes.content}>
-              <Typography gutterBottom variant="h5" align="left">
-                <Box>{props.title}</Box>
-              </Typography>
-              <Typography
-                align="left"
-                variant="body2"
-                component="p"
-                display="block"
-              >
-                Type: {props.type}
-              </Typography>
-              <Typography
-                align="left"
-                variant="body2"
-                component="p"
-                display="block"
-              >
-                Year: {props.year}
-              </Typography>
-              <Typography
-                align="left"
-                variant="body2"
-                component="p"
-                display="block"
-              >
-                Format:{formatList && formatList.join(" , ")}
-              </Typography>
-            </CardContent>
+          <div className={classes.linkarea}>
+            <Link
+              variant="body2"
+              to={`/detail/${props.id}/${props.type}`}
+              style={{ textDecoration: "none" }}
+            >
+              {/* <div className={classes.details}> */}
+              <CardContent className={classes.content}>
+                <Typography gutterBottom variant="h5" align="left">
+                  <Box>{props.title}</Box>
+                </Typography>
+                <Typography
+                  align="left"
+                  variant="body2"
+                  component="p"
+                  display="block"
+                >
+                  Type: {props.type}
+                </Typography>
+                <Typography
+                  align="left"
+                  variant="body2"
+                  component="p"
+                  display="block"
+                >
+                  Year: {props.year}
+                </Typography>
+                <Typography
+                  align="left"
+                  variant="body2"
+                  component="p"
+                  display="block"
+                >
+                  Format:{formatList && formatList.join(" , ")}
+                </Typography>
+              </CardContent>
+            </Link>
             {/* </div> */}
 
             <div className={classes.actions} justifyContent="flex-end">
               {/* <p>favorites: {favorite.length}</p> */}
+              <Button
+                variant="text"
+                size="small"
+                color="black"
+                onClick={() => addFavorite(id)}
+              >
+                ADD ♡
+              </Button>
               <Button variant="text" size="small" color="black">
                 Share
               </Button>
@@ -217,7 +231,7 @@ function Cards(props) {
           /> */}
               {/* <button onClick={() => addWishList()}>add</button> */}
             </div>
-          </Link>
+          </div>
           {/* </CardActionArea> */}
         </Card>
       </ThemeProvider>

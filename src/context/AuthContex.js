@@ -1,4 +1,4 @@
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import app from "../components/firebase";
 
@@ -73,16 +73,16 @@ export const AuthProvider = ({ children }) => {
       });
   };
 
-  const addFavorite = (addItem) => {
+  const addFavorite = (favorites) => {
     app.auth().onAuthStateChanged((user) => {
       if (user) {
         const userRef = db.collection("users").doc(user.uid);
         return userRef
           .update({
-            regions: app.firestore.FieldValue.arrayUnion(addItem),
+            regions: app.firestore.FieldValue.arrayUnion(favorites),
           })
           .then(() => {
-            console.log("Update Success!");
+            alert("{props.title}item added!");
           })
           .catch((error) => {
             console.log("Error when adding item", error);
@@ -92,9 +92,16 @@ export const AuthProvider = ({ children }) => {
       }
     });
   };
+
+  const handleLogout = () => {
+    app.auth().signOut();
+    console.log("logout", handleLogout);
+    alert("Log out successfully");
+  };
+
   return (
     <AuthContext.Provider
-      value={{ user, loggedIn, logIn, signUp, addFavorite }}
+      value={{ user, loggedIn, logIn, signUp, addFavorite, handleLogout }}
     >
       {children}
     </AuthContext.Provider>

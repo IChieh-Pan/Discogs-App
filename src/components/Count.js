@@ -8,9 +8,9 @@ function Count() {
 
   const style = {
     display: "flex",
-    marginTop: "80px",
-    marginRight: "50px",
-    justifyContent: "flex-end",
+    marginTop: "65px",
+    marginLeft: "50px",
+    justifyContent: "flex-start",
   };
 
   /*   const handleResetWishList = () => {
@@ -19,10 +19,9 @@ function Count() {
 
   return (
     <div style={style}>
-      <button /* onClick= {handleResetWishList()} */>Cleaer</button>
-      <h3>{pagination.items} </h3>
-      <h1>Alomst</h1>
-
+      {/* <button onClick= {handleResetWishList()}>Cleaer</button> */}
+      <h3>Results:{pagination.items} </h3>
+      {/* <h3>Alomst</h3> */}
     </div>
   );
 }
