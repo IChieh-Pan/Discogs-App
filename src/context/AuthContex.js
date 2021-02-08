@@ -1,6 +1,7 @@
-import React, { useState, createContext, useContext } from "react";
+import React, { useState, createContext, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import app from "../components/firebase";
+// import { useCollectionData } from "react-firebase-hooks/firestore";
 
 const initContext = {
   user: null,
@@ -22,6 +23,16 @@ export const AuthProvider = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const history = useHistory();
   const db = app.firestore();
+
+  useEffect(() => {
+    app.auth().onAuthStateChanged((user) => {
+      if (user) {
+        setUser(user);
+        setLoggedIn(true);
+        ChatRoom();
+      }
+    });
+  }, []);
 
   const signUp = ({ email, password, username }) => {
     app
@@ -73,22 +84,45 @@ export const AuthProvider = ({ children }) => {
       });
   };
 
-  const addFavorite = (favorites) => {
+  const addFavorite = (favorites, title) => {
     app.auth().onAuthStateChanged((user) => {
       if (user) {
         const userRef = db.collection("users").doc(user.uid);
         return userRef
           .update({
-            regions: app.firestore.FieldValue.arrayUnion(favorites),
+            favorites: app.firestore.FieldValue.arrayUnion(favorites),
           })
           .then(() => {
-            alert("{props.title}item added!");
+            alert(`${title} added!`);
           })
           .catch((error) => {
             console.log("Error when adding item", error);
           });
       } else {
         history.push("/login");
+      }
+    });
+  };
+
+  const ChatRoom = () => {
+    app.auth().onAuthStateChanged((user) => {
+      if (user) {
+        const messagesRef = db.collection("users").doc(user.uid);
+        // const query = messagesRef.orderBy("createdAt").limit(25);
+
+        return messagesRef
+          .get()
+          .then((doc) => {
+            console.log("query");
+            if (doc.exists) {
+              console.log("doc data:", doc.data());
+            } else {
+              console.log("No such Doc");
+            }
+          })
+          .catch((error) => {
+            console.log("Error getting document", error);
+          });
       }
     });
   };

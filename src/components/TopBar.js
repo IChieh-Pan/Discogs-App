@@ -178,7 +178,7 @@ function TopBar() {
         </IconButton>
         <p>Favorites</p>
       </MenuItem>
-      {/* {user ? ( */}
+      {user ? 
       <MenuItem onClick={() => handleLogout()}>
         <IconButton
           aria-label="account of current user"
@@ -190,7 +190,7 @@ function TopBar() {
         </IconButton>
         <p>Log out</p>
       </MenuItem>
-      ) : (
+      : 
       <MenuItem onClick={() => handleLoginPage("/login")}>
         <IconButton
           aria-label="account of current user"
@@ -202,7 +202,7 @@ function TopBar() {
         </IconButton>
         <p>Sign in</p>
       </MenuItem>
-      )}
+    }
     </Menu>
   );
 

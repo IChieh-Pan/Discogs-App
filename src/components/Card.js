@@ -56,7 +56,7 @@ function Cards(props) {
     setWishList(wishList + 1);
   }; */
   const id = props.id;
-  console.log("id", id);
+  // console.log("id", id);
 
   const { addFavorite } = useContext(AuthContext);
   // const initialState = () => Number(window.localStorage.getItem("key")) || 0;
@@ -208,7 +208,7 @@ function Cards(props) {
                 variant="text"
                 size="small"
                 color="black"
-                onClick={() => addFavorite(id)}
+                onClick={() => addFavorite(id,props.title)}
               >
                 ADD ♡
               </Button>
