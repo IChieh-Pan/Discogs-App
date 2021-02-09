@@ -21,6 +21,7 @@ export const AuthContext = createContext(initContext);
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loggedIn, setLoggedIn] = useState(false);
+  const [favList, setFavList] = useState([]);
   const history = useHistory();
   const db = app.firestore();
 
@@ -29,7 +30,9 @@ export const AuthProvider = ({ children }) => {
       if (user) {
         setUser(user);
         setLoggedIn(true);
-        ChatRoom();
+        getFavorites();
+
+        // ChatRoom();
       }
     });
   }, []);
@@ -43,6 +46,8 @@ export const AuthProvider = ({ children }) => {
         let user = userCredential.user;
         console.log("user", user);
         // alert("User sign up successfully!");
+        const { email, displayName } = user;
+        setUser({ email, displayName });
         setUser(user);
         setLoggedIn(true);
 
@@ -104,7 +109,34 @@ export const AuthProvider = ({ children }) => {
     });
   };
 
-  const ChatRoom = () => {
+  const handleLogout = () => {
+    app.auth().signOut();
+    console.log("logout", handleLogout);
+    alert("Log out successfully");
+  };
+
+  const getFavorites = () => {
+    app.auth().onAuthStateChanged((user) => {
+      const FavoritesRef = db.collection("users").doc(user.uid);
+      // const favListArray = [];
+      FavoritesRef.get()
+        .then((doc) => {
+          if (doc.exists) {
+            console.log("Document data:", doc.data().favorites);
+            // favListArray.push(doc.data())
+            // setFavList()
+          } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+          }
+        })
+        .catch((error) => {
+          console.log("Error getting document:", error);
+        });
+    });
+  };
+
+  /*   const ChatRoom = () => {
     app.auth().onAuthStateChanged((user) => {
       if (user) {
         const messagesRef = db.collection("users").doc(user.uid);
@@ -125,17 +157,19 @@ export const AuthProvider = ({ children }) => {
           });
       }
     });
-  };
-
-  const handleLogout = () => {
-    app.auth().signOut();
-    console.log("logout", handleLogout);
-    alert("Log out successfully");
-  };
+  }; */
 
   return (
     <AuthContext.Provider
-      value={{ user, loggedIn, logIn, signUp, addFavorite, handleLogout }}
+      value={{
+        user,
+        loggedIn,
+        logIn,
+        signUp,
+        addFavorite,
+        handleLogout,
+        getFavorites,
+      }}
     >
       {children}
     </AuthContext.Provider>

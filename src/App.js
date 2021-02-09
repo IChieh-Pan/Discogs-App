@@ -4,7 +4,7 @@ import ListScreen from "./components/ListScreen";
 import { DiscogsProvider } from "./context/DiscogsListContext";
 import CardDetail from "./components/Card";
 import Count from "./components/Count";
-import { BrowserRouter, Switch, Route} from "react-router-dom";
+import { BrowserRouter, Switch, Route, withRouter } from "react-router-dom";
 import Detail from "./components/Detail";
 import Typography from "@material-ui/core/Typography";
 import BotttomNav from "../src/components/BottomNav";
@@ -18,6 +18,7 @@ import { ThemeProvider, Button } from "@material-ui/core";
 import { theme } from "./context/ThemeContext.js";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import MyCssBaseline from "./components/MyCssBaseline";
+import MyFavList from "./components/MyFavList";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
               <Route exact path="/" component={ListScreen} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={SignUp} />
+              <Route exact path="/mylist" component={MyFavList} />
               <Route
                 path="/detail/:id/:type"
                 render={(props) => (
