@@ -22,11 +22,11 @@ import MyFavList from "./components/MyFavList";
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <MyCssBaseline />
-      <AuthProvider>
-        <BrowserRouter>
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <MyCssBaseline />
+        <AuthProvider>
           <Switch>
             <DiscogsProvider>
               <TopBar />
@@ -45,14 +45,12 @@ function App() {
                   />
                 )}
               />
-              {/* <DetailScreen />
-            <DetailContext /> */}
               <BottomNav />
             </DiscogsProvider>
           </Switch>
-        </BrowserRouter>
-      </AuthProvider>
-    </ThemeProvider>
+        </AuthProvider>
+      </ThemeProvider>
+    </BrowserRouter>
   );
 }
 

@@ -31,8 +31,6 @@ export const AuthProvider = ({ children }) => {
         setUser(user);
         setLoggedIn(true);
         getFavorites();
-
-        // ChatRoom();
       }
     });
   }, []);
@@ -118,15 +116,13 @@ export const AuthProvider = ({ children }) => {
   const getFavorites = () => {
     app.auth().onAuthStateChanged((user) => {
       const FavoritesRef = db.collection("users").doc(user.uid);
-      // const favListArray = [];
+
       FavoritesRef.get()
         .then((doc) => {
           if (doc.exists) {
-            console.log("Document data:", doc.data().favorites);
-            // favListArray.push(doc.data())
-            // setFavList()
+            console.log("Favorites:", doc.data().favorites);
+            setFavList(doc.data().favorites);
           } else {
-            // doc.data() will be undefined in this case
             console.log("No such document!");
           }
         })
@@ -168,6 +164,7 @@ export const AuthProvider = ({ children }) => {
         signUp,
         addFavorite,
         handleLogout,
+        favList,
         getFavorites,
       }}
     >
