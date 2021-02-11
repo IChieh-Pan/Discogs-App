@@ -25,20 +25,17 @@ export const DiscogsProvider = (props) => {
       );
       const data = await response.json();
       setLoading(false);
-       
 
       // console.log("data", data);
       const pagination = data.pagination;
-      console.log("p", pagination);
+      // console.log("p", pagination);
 
       const results = data.results;
-      console.log("resultsperpage", results);
+      // console.log("resultsperpage", results);
 
       const item = results[12];
-      console.log("item", item);
-      console.log("type", item.type);
-
-
+      /*    console.log("item", item);
+      console.log("type", item.type); */
 
       setResults(results);
       setPagination(pagination);

@@ -4,7 +4,7 @@ import Button from "@material-ui/core/Button";
 
 function Count() {
   const { pagination, setPagination, search } = useContext(DiscogsListContext);
-  console.log("l", pagination);
+  // console.log("l", pagination);
 
   const style = {
     display: "flex",

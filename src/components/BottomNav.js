@@ -24,7 +24,7 @@ function BottomNav() {
   const { results, setResults, fetchData, setType } = useContext(
     DiscogsListContext
   );
-  console.log("results", results);
+  // console.log("results", results);
 
   const handleChange = (newValue) => {
     setValue(newValue);

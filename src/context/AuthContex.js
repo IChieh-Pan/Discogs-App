@@ -1,7 +1,6 @@
 import React, { useState, createContext, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import app from "../components/firebase";
-// import { useCollectionData } from "react-firebase-hooks/firestore";
 
 const initContext = {
   user: null,
@@ -29,6 +28,7 @@ export const AuthProvider = ({ children }) => {
     app.auth().onAuthStateChanged((user) => {
       if (user) {
         setUser(user);
+        console.log("user", user);
         setLoggedIn(true);
         getFavorites();
       }
@@ -44,10 +44,19 @@ export const AuthProvider = ({ children }) => {
         let user = userCredential.user;
         console.log("user", user);
         // alert("User sign up successfully!");
-        const { email, displayName } = user;
-        setUser({ email, displayName });
-        setUser(user);
-        setLoggedIn(true);
+
+        user
+          .updateProfile({
+            displayName: username,
+            photoURL: "https://example.com/jane-q-user/profile.jpg",
+          })
+          .then(function () {
+         
+            setUser(user);
+            // setUser(user);
+            setLoggedIn(true);
+          })
+          .catch(function (error) {});
 
         db.collection("users")
           .doc(user.uid)
@@ -131,29 +140,6 @@ export const AuthProvider = ({ children }) => {
         });
     });
   };
-
-  /*   const ChatRoom = () => {
-    app.auth().onAuthStateChanged((user) => {
-      if (user) {
-        const messagesRef = db.collection("users").doc(user.uid);
-        // const query = messagesRef.orderBy("createdAt").limit(25);
-
-        return messagesRef
-          .get()
-          .then((doc) => {
-            console.log("query");
-            if (doc.exists) {
-              console.log("doc data:", doc.data());
-            } else {
-              console.log("No such Doc");
-            }
-          })
-          .catch((error) => {
-            console.log("Error getting document", error);
-          });
-      }
-    });
-  }; */
 
   return (
     <AuthContext.Provider

@@ -20,6 +20,7 @@ import { borders } from "@material-ui/system";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../context/AuthContex";
 import Link from "@material-ui/core/Link";
+import FavoriteIcon from "@material-ui/icons/Favorite";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -172,37 +173,37 @@ function TopBar() {
       </MenuItem>
       <MenuItem>
         <IconButton aria-label="show 11 new notifications" color="primary">
-          <Badge badgeContent={11} color="primary">
-            <NotificationsIcon />
+          <Badge badgeContent={11} color="secondary">
+            <FavoriteIcon />
           </Badge>
         </IconButton>
-        <p>Favorites</p>
+        <p>My List</p>
       </MenuItem>
-      {user ? 
-      <MenuItem onClick={() => handleLogout()}>
-        <IconButton
-          aria-label="account of current user"
-          aria-controls="secondary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Log out</p>
-      </MenuItem>
-      : 
-      <MenuItem onClick={() => handleLoginPage("/login")}>
-        <IconButton
-          aria-label="account of current user"
-          aria-controls="secondary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Sign in</p>
-      </MenuItem>
-    }
+      {user ? (
+        <MenuItem onClick={() => handleLogout()}>
+          <IconButton
+            aria-label="account of current user"
+            aria-controls="secondary-search-account-menu"
+            aria-haspopup="true"
+            color="inherit"
+          >
+            <AccountCircle />
+          </IconButton>
+          <p>Log out</p>
+        </MenuItem>
+      ) : (
+        <MenuItem onClick={() => handleLoginPage("/login")}>
+          <IconButton
+            aria-label="account of current user"
+            aria-controls="secondary-search-account-menu"
+            aria-haspopup="true"
+            color="inherit"
+          >
+            <AccountCircle />
+          </IconButton>
+          <p>Sign in</p>
+        </MenuItem>
+      )}
     </Menu>
   );
 
