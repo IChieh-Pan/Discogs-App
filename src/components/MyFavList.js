@@ -17,8 +17,8 @@ function MyFavList() {
       <Grid container style={style} alignItems="flex-start">
         <ol>
           {favList &&
-            favList.map((item) => {
-              return <Card key={item.id}></Card>;
+             favList.map((item) => {
+               return <Card key={item.id}></Card>;
             })}
         </ol>
       </Grid>

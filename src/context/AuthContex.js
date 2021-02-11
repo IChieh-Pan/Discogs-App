@@ -51,7 +51,6 @@ export const AuthProvider = ({ children }) => {
             photoURL: "https://example.com/jane-q-user/profile.jpg",
           })
           .then(function () {
-         
             setUser(user);
             // setUser(user);
             setLoggedIn(true);
@@ -105,6 +104,7 @@ export const AuthProvider = ({ children }) => {
             favorites: app.firestore.FieldValue.arrayUnion(favorites),
           })
           .then(() => {
+            getFavorites();
             alert(`${title} added!`);
           })
           .catch((error) => {

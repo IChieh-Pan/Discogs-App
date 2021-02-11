@@ -100,12 +100,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function TopBar() {
-  const { loggedIn, handleLogout, user } = useContext(AuthContext);
+  const { loggedIn, handleLogout, user, favList } = useContext(AuthContext);
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
   const { fetchData } = useContext(DiscogsListContext);
   const [search, setSearch] = useState("");
+
+ 
+    console.log("aa",favList.length);
+
 
   const searchHandler = (e) => {
     console.log(`${e.target.value}`);
@@ -135,6 +139,10 @@ function TopBar() {
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
+
+  const favListCount = () => {
+  console.log(favList.lenght)
+}
 
   const menuId = "primary-search-account-menu";
   const renderMenu = (
@@ -173,7 +181,7 @@ function TopBar() {
       </MenuItem>
       <MenuItem>
         <IconButton aria-label="show 11 new notifications" color="primary">
-          <Badge badgeContent={11} color="secondary">
+          <Badge badgeContent={favList.length} color="secondary">
             <FavoriteIcon />
           </Badge>
         </IconButton>
@@ -263,7 +271,7 @@ function TopBar() {
               </Badge>
             </IconButton>
             <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="secondary">
+              <Badge badgeContent={favList.length} color="secondary">
                 <NotificationsIcon />
               </Badge>
             </IconButton>
