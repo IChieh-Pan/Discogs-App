@@ -1,12 +1,13 @@
 import React from "react";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { yellow, blueGrey } from "@material-ui/core/colors";
-// import blueGrey from "@material-ui/core/colors/blueGrey";
+import { makeStyles } from "@material-ui/core/styles";
 
 /* export const useStyles = makeStyles((theme) => ({
   root: {
-    height: "100vh",
-    background: "#333",
+    inputRoot: {
+      color: "#ffffff",
+    },
   },
 })); */
 

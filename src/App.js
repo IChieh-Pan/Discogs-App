@@ -22,6 +22,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import MyCssBaseline from "./components/MyCssBaseline";
 import MyFavList from "./components/MyFavList";
 
+// const App = withRouter(({location}) => {
 function App() {
   return (
     <BrowserRouter>
@@ -30,15 +31,22 @@ function App() {
         <MyCssBaseline />
         <AuthProvider>
           <ChatProvider>
-            <Switch>
-              <DiscogsProvider>
-                <TopBar />
-                <Count />
-
-                <Route exact path="/" component={ListScreen} />
+            <DiscogsProvider>
+              <TopBar />
+              <Switch>
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/signup" component={SignUp} />
-                <Route exact path="/mylist" component={MyFavList} />
+                <Route exact path="/chatroom" component={Chatroom} />
+                <Route exact path="/">
+                  <ListScreen />
+                  <BottomNav />
+                  <Count />
+                </Route>
+                <Route exact path="/mylist" component={MyFavList}>
+                  <MyFavList />
+                  <BottomNav />
+                  <Count />
+                </Route>
                 <Route
                   path="/detail/:id/:type"
                   render={(props) => (
@@ -48,10 +56,8 @@ function App() {
                     />
                   )}
                 />
-                <Route exact path="/chatroom" component={Chatroom} />
-                <BottomNav />
-              </DiscogsProvider>
-            </Switch>
+              </Switch>
+            </DiscogsProvider>
           </ChatProvider>
         </AuthProvider>
       </ThemeProvider>

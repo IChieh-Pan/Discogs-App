@@ -24,8 +24,8 @@ export const ChatProvider = ({ children }) => {
     readMessages();
   }, []);
 
-    const writeMessages = async (body) => {
-      console.log('user', user)
+  const writeMessages = async (body) => {
+    console.log("user", user);
     db.collection("messages")
       .add({
         username: user.displayName,
@@ -43,12 +43,13 @@ export const ChatProvider = ({ children }) => {
 
   const readMessages = () => {
     db.collection("messages")
+      .orderBy("timestamp")
+      .limit(10)
       .get()
       .then((querySnapshot) => {
         const messageArray = [];
 
         querySnapshot.forEach((doc) => {
-          // doc.data() is never undefined for query doc snapshots
           console.log(doc.id, " => ", doc.data());
           messageArray.push(doc.data());
         });

@@ -17,10 +17,12 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import Button from "@material-ui/core/Button";
 import { borders } from "@material-ui/system";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContex";
-import Link from "@material-ui/core/Link";
 import FavoriteIcon from "@material-ui/icons/Favorite";
+import MyFavList from "./MyFavList";
+import Grid from "@material-ui/core/Grid";
+import ChatIcon from "@material-ui/icons/Chat";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,6 +33,8 @@ const useStyles = makeStyles((theme) => ({
     position: "fixed",
     top: 0,
     backgroundColor: "#000000",
+    display: "flex",
+    justifyContent: "space-between",
   },
   grow: {
     flexGrow: 1,
@@ -39,7 +43,9 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   title: {
-    display: "none",
+    display: "flex",
+    color: "#ffffff",
+    fontSize: "1.4rem",
     [theme.breakpoints.up("sm")]: {
       display: "block",
       color: "#ffffff",
@@ -53,11 +59,14 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: fade(theme.palette.common.white, 0.25),
     },
     marginRight: theme.spacing(2),
-    marginLeft: 0,
-    width: "100%",
+    marginLeft: 20,
+    width: "20%",
+    borderRadius: "5rem",
     [theme.breakpoints.up("sm")]: {
+      width: "100%",
       marginLeft: theme.spacing(3),
       width: "auto",
+      borderRadius: "5rem",
     },
   },
   searchIcon: {
@@ -73,7 +82,7 @@ const useStyles = makeStyles((theme) => ({
     border: "1px",
     borderColor: "#e7e7e7",
     borderStyle: "solid",
-    color: "#000000",
+    color: "#ffffff",
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
@@ -106,10 +115,9 @@ function TopBar() {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
   const { fetchData } = useContext(DiscogsListContext);
   const [search, setSearch] = useState("");
+  // const [menu, setMenu] = useState(null)
 
- 
-    console.log("aa",favList.length);
-
+  console.log("aa", favList.length);
 
   const searchHandler = (e) => {
     console.log(`${e.target.value}`);
@@ -141,8 +149,8 @@ function TopBar() {
   };
 
   const favListCount = () => {
-  console.log(favList.lenght)
-}
+    console.log(favList.lenght);
+  };
 
   const menuId = "primary-search-account-menu";
   const renderMenu = (
@@ -171,21 +179,25 @@ function TopBar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
-        <IconButton aria-label="show 4 new mails" color="primary">
-          <Badge badgeContent={4} color="primary">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
-      <MenuItem>
+      <MenuItem
+        component={Link}
+        to="/mylist"
+        style={{ textDecoration: "none" }}
+      >
         <IconButton aria-label="show 11 new notifications" color="primary">
           <Badge badgeContent={favList.length} color="secondary">
             <FavoriteIcon />
           </Badge>
         </IconButton>
         <p>My List</p>
+      </MenuItem>
+      <MenuItem component={Link} to="/chatroom">
+        <IconButton aria-label="show 4 new mails" color="primary">
+          {/* <Badge badgeContent={4} color="primary"> */}
+          <ChatIcon />
+          {/* </Badge> */}
+        </IconButton>
+        <p>Chatroom</p>
       </MenuItem>
       {user ? (
         <MenuItem onClick={() => handleLogout()}>
@@ -219,61 +231,57 @@ function TopBar() {
     <div className={classes.grow}>
       <AppBar className={classes.root}>
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          >
-            <MenuIcon />
-          </IconButton>
-          <Link
-            href="/"
-            variant="h6"
-            className={classes.title}
-            style={{ textDecoration: "none" }}
-          >
-            {"🎧 Discogs 🎧"}
-          </Link>
-          {/* <Typography className={classes.title} variant="h6" noWrap>
-            🎧 &nbsp;Discogs&nbsp; 🎧
-          </Typography> */}
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
+          <Grid alignContent={"space-between"}>
+            <div style={{ display: "inline-block" }}>
+              <Typography
+                component={Link}
+                to="/"
+                // variant="h6"
+                className={classes.title}
+                style={{ textDecoration: "none" }}
+              >
+                {"🎧 Discogs 🎧"}
+              </Typography>
             </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ "aria-label": "search" }}
-              onChange={searchHandler}
-              value={search}
-              style={{ borderRadius: "5rem" }}
-            />
-          </div>
-          <Button
-            // className={classes.button}
-            variant="text"
-            color="secondary"
-            onClick={searchSubmit}
-            style={{ borderRadius: "5rem" }}
-          >
-            GO
-          </Button>
+            <div style={{ display: "inline-block" }}>
+              <div className={classes.search}>
+                <div className={classes.searchIcon}>
+                  <SearchIcon />
+                </div>
+                <InputBase
+                  placeholder="Search…"
+                  classes={{
+                    root: classes.inputRoot,
+                    input: classes.inputInput,
+                  }}
+                  inputProps={{ "aria-label": "search" }}
+                  onChange={searchHandler}
+                  onClick={searchSubmit}
+                  value={search}
+                  style={{ borderRadius: "5rem" }}
+                />
+              </div>
+            </div>
+          </Grid>
+
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <MailIcon />
+            {/* <MenuItem component={Link} to="/mylist"> */}
+            <IconButton
+              aria-label="show 17 new notifications"
+              color="inherit"
+              component={Link}
+              to="/mylist"
+            >
+              <Badge badgeContent={favList.length} color="secondary">
+                <FavoriteIcon />
               </Badge>
             </IconButton>
-            <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={favList.length} color="secondary">
-                <NotificationsIcon />
-              </Badge>
+            {/* </MenuItem> */}
+            <IconButton aria-label="show 4 new mails" color="inherit">
+              {/* <Badge badgeContent={4} color="secondary"> */}
+              <ChatIcon />
+              {/* </Badge> */}
             </IconButton>
             <IconButton
               edge="end"

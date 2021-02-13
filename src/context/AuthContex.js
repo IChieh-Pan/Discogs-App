@@ -120,8 +120,10 @@ export const AuthProvider = ({ children }) => {
     app.auth().signOut();
     console.log("logout", handleLogout);
     alert("Log out successfully");
+    history.push("/login");
   };
 
+  
   const getFavorites = () => {
     app.auth().onAuthStateChanged((user) => {
       const FavoritesRef = db.collection("users").doc(user.uid);
