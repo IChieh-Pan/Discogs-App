@@ -21,6 +21,7 @@ import { theme } from "./context/ThemeContext.js";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import MyCssBaseline from "./components/MyCssBaseline";
 import MyFavList from "./components/MyFavList";
+import Box from "@material-ui/core/Box";
 
 // const App = withRouter(({location}) => {
 function App() {
@@ -33,30 +34,32 @@ function App() {
           <ChatProvider>
             <DiscogsProvider>
               <TopBar />
-              <Switch>
-                <Route exact path="/login" component={Login} />
-                <Route exact path="/signup" component={SignUp} />
-                <Route exact path="/chatroom" component={Chatroom} />
-                <Route exact path="/">
-                  <ListScreen />
-                  <BottomNav />
-                  <Count />
-                </Route>
-                <Route exact path="/mylist" component={MyFavList}>
-                  <MyFavList />
-                  <BottomNav />
-                  <Count />
-                </Route>
-                <Route
-                  path="/detail/:id/:type"
-                  render={(props) => (
-                    <Detail
-                      id={props.match.params.id}
-                      type={props.match.params.type}
-                    />
-                  )}
-                />
-              </Switch>
+              <Box mt={10}>
+                <Switch>
+                  <Route exact path="/login" component={Login} />
+                  <Route exact path="/signup" component={SignUp} />
+                  <Route exact path="/chatroom" component={Chatroom} />
+                  <Route exact path="/">
+                    <ListScreen />
+                    <BottomNav />
+                    <Count />
+                  </Route>
+                  <Route exact path="/mylist" component={MyFavList}>
+                    <MyFavList />
+                    <BottomNav />
+                    <Count />
+                  </Route>
+                  <Route
+                    path="/detail/:id/:type"
+                    render={(props) => (
+                      <Detail
+                        id={props.match.params.id}
+                        type={props.match.params.type}
+                      />
+                    )}
+                  />
+                </Switch>
+              </Box>
             </DiscogsProvider>
           </ChatProvider>
         </AuthProvider>

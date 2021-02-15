@@ -52,7 +52,7 @@ function Chatroom() {
         messages.map((message, index) => {
           return (
             <div>
-              <h5>{message.userName}</h5>
+              <h6>{message.userName}</h6>
               <h6>{message.timestamp.toString()}</h6>
               <p>{message.body}</p>
             </div>

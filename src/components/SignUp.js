@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { withRouter } from "react-router";
 import { AuthContext } from "../context/AuthContex";
 import app from "./firebase";
@@ -12,7 +12,7 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-
+import Box from "@material-ui/core/Box";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -37,6 +37,12 @@ const useStyles = makeStyles((theme) => ({
 const SignUp = () => {
   const [state, setState] = useState({ email: "", password: "", username: "" });
   const { signUp } = useContext(AuthContext);
+  const [isChecked, setIsChecked] = useState(false);
+  const initialState = () => Number(window.localStorage.getItem("key"));
+
+ /*  useEffect(() => {
+    window.localStorage.setItem("currentUser", JSON.stringify(username, email));
+  }, []); */
 
   const handleChange = (event) => {
     console.log(handleChange);
@@ -51,81 +57,91 @@ const SignUp = () => {
   const classes = useStyles();
 
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Typography component="h1" variant="h5">
-          Sign Up
-        </Typography>
-        <form className={classes.form} noValidate onSubmit={handleSignUp}>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="username"
-            type="username"
-            label="Name"
-            name="username"
-            autoComplete="Name"
-            autoFocus
-            onChange={handleChange}
-            value={state.username}
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            type="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            onChange={handleChange}
-            value={state.email}
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            onChange={handleChange}
-            value={state.password}
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
+    <Box pt={4}>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Typography component="h1" variant="h5">
             Sign Up
-          </Button>
-          <Grid container>
-            <Grid item xs>
-              {/*   <Link href="#" variant="body2">
+          </Typography>
+          <form className={classes.form} noValidate onSubmit={handleSignUp}>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="username"
+              type="username"
+              label="Name"
+              name="username"
+              autoComplete="Name"
+              autoFocus
+              onChange={handleChange}
+              value={state.username}
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              type="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              onChange={handleChange}
+              value={state.email}
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              onChange={handleChange}
+              value={state.password}
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  value="remember"
+                  color="primary"
+                  onChange={(e) => {
+                    setIsChecked(e.target.checked);
+                  }}
+                />
+              }
+              label="Remember me"
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+            >
+              Sign Up
+            </Button>
+            <Grid container>
+              <Grid item xs>
+                {/*   <Link href="#" variant="body2">
                 Forgot password?
               </Link> */}
+              </Grid>
+              <Grid item>
+                <Link href="/login" variant="body2">
+                  {"Already a member? Log in"}
+                </Link>
+              </Grid>
             </Grid>
-            <Grid item>
-              <Link href="/login" variant="body2">
-                {"Already a member? Log in"}
-              </Link>
-            </Grid>
-          </Grid>
-        </form>
-      </div>
-    </Container>
+          </form>
+        </div>
+      </Container>
+    </Box>
   );
 };
 
