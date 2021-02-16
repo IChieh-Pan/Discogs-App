@@ -14,7 +14,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import Box from "@material-ui/core/Box";
 import { AuthContext } from "../context/AuthContex";
 import { BrowserRouter, Switch, Route, useParams } from "react-router-dom";
-import VinylPlaceholder from "../image/VinylPlaceholder.jpg";
+import vinylPlaceholder from "../image/VinylPlaceholder.jpg";
 import {
   ImportantDevicesTwoTone,
   InsertDriveFileTwoTone,
@@ -55,13 +55,70 @@ export const theme = createMuiTheme({
    } 
   ] */
 });
+const useStyles = makeStyles({
+  root: {
+    maxWidth: 800,
+    height: 160,
+    marginBottom: "1.5rem",
+    marginRight: "1.5rem",
+    display: "flex",
+    flexDirection: "row",
+  },
+  /* details: {
+      display: "flex",
+      flexDirection: "row",
+    }, */
+  content: {
+    width: 400,
+    height: 130,
+    backgroundColor: "#FFD9E8" /* "#FFE1ED" */,
+  },
+  media: {
+    width: "100%",
+    height: "100%",
+    opacity: 1,
+    // mixBlendMode: "multiply",
+    position: "relative",
+    objectFit: "cover",
+  },
+  overlay: {
+    // position: "absolute",
+    objectFit: "contain",
+    width: "100%",
+    backgroundColor: "#FDBCD5",
+  },
+  image: {
+    width: 200,
+    height: 160,
+    position: "relative",
+    objectFit: "cover",
+    mixBlendMode: "multiply",
+    filter: "grayscale(100%)",
+  },
+  /*         thumb: {
+      image: (props) =>
+       props.thumb === "" ? "../image/VinylPlaceholder.jpg" : { props.cover_image },
+    }, */
+  actions: {
+    paddingRight: 10,
+    display: "flex",
+    flexDirection: "row-reverse",
+    height: 30,
+    backgroundColor: "#FFD9E8",
+  },
+  container: {
+    width: 200,
+    height: 160,
+    backgroundColor: "#FDBCD5",
+  },
+});
 
-function Cards(props) {
+function Cards({ result }) {
+  const { id, thumb, title, cover_image, type, country, year, format } = result;
   // const initialState = 0;
   /*  const addWishList = () => {
     setWishList(wishList + 1);
   }; */
-  const id = props.id;
   // console.log("id", id);
 
   const { favList, addFavorite, trigerAdd, removeFav } = useContext(
@@ -83,68 +140,10 @@ function Cards(props) {
     }
   }; */
 
-  const useStyles = makeStyles({
-    root: {
-      maxWidth: 800,
-      height: 160,
-      marginBottom: "1.5rem",
-      marginRight: "1.5rem",
-      display: "flex",
-      flexDirection: "row",
-    },
-    /* details: {
-      display: "flex",
-      flexDirection: "row",
-    }, */
-    content: {
-      width: 400,
-      height: 130,
-      backgroundColor: "#FFD9E8" /* "#FFE1ED" */,
-    },
-    media: {
-      width: "100%",
-      height: "100%",
-      opacity: 1,
-      // mixBlendMode: "multiply",
-      position: "relative",
-      objectFit: "cover",
-    },
-    overlay: {
-      // position: "absolute",
-      objectFit: "contain",
-      width: "100%",
-      backgroundColor: "#FDBCD5",
-    },
-    image: {
-      width: 200,
-      height: 160,
-      position: "relative",
-      objectFit: "cover",
-      mixBlendMode: "multiply",
-      filter: "grayscale(100%)",
-    },
-    /*         thumb: {
-      image: (props) =>
-       props.thumb === "" ? "../image/VinylPlaceholder.jpg" : { props.cover_image },
-    }, */
-    actions: {
-      paddingRight: 10,
-      display: "flex",
-      flexDirection: "row-reverse",
-      height: 30,
-      backgroundColor: "#FFD9E8",
-    },
-    container: {
-      width: 200,
-      height: 160,
-      backgroundColor: "#FDBCD5",
-    },
-  });
-
   const classes = useStyles();
-  const formatList = props.format;
-  // const thumbImage = props.thumb;
-  const coverImage = props.cover_image;
+  const formatList = format;
+  // const thumbImage = thumb;
+  const coverImage = cover_image;
 
   /*   const removeFav = (favList, id) => {
     const index = favList.indexOf(id)
@@ -179,8 +178,8 @@ function Cards(props) {
               <CardMedia
                 className={classes.media}
                 component="img"
-                alt={props.title}
-                image={props.cover_image}
+                alt={title}
+                image={thumb !== "" ? cover_image : vinylPlaceholder}
                 // image={classes.thumb}
                 /* image={
                   props.thumb === ""
@@ -205,13 +204,13 @@ function Cards(props) {
           <div className={classes.linkarea}>
             <Link
               variant="body2"
-              to={`/detail/${props.id}/${props.type}`}
+              to={`/detail/${id}/${type}`}
               style={{ textDecoration: "none" }}
             >
               {/* <div className={classes.details}> */}
               <CardContent className={classes.content}>
                 <Typography gutterBottom variant="h5" align="left">
-                  <Box>{props.title}</Box>
+                  <Box>{title}</Box>
                 </Typography>
                 <Typography
                   align="left"
@@ -219,7 +218,7 @@ function Cards(props) {
                   component="p"
                   display="block"
                 >
-                  Type: {props.type}
+                  Type: {type}
                 </Typography>
                 <Typography
                   align="left"
@@ -235,7 +234,7 @@ function Cards(props) {
                   component="p"
                   display="block"
                 >
-                  Year: {props.year}
+                  Year: {year}
                 </Typography>
               </CardContent>
             </Link>
@@ -243,22 +242,25 @@ function Cards(props) {
 
             <div className={classes.actions} justifyContent="flex-end">
               {/* <p>favorites: {favorite.length}</p> */}
-              <Button
-                variant="text"
-                size="small"
-                color="black"
-                onClick={() => addFavorite(id, props.title)}
-              >
-                {favList.includes(id) ? "Remove ♥" : "Add ♡"}
-              </Button>
-              <Button
-                variant="text"
-                size="small"
-                color="black"
-                onClick={() => removeFav(id, props.title)}
-              >
-                Remove
-              </Button>
+              {favList.find((fav) => fav.id === result.id) ? (
+                <Button
+                  variant="text"
+                  size="small"
+                  color="black"
+                  onClick={() => removeFav(result)}
+                >
+                  Remove ♥
+                </Button>
+              ) : (
+                <Button
+                  variant="text"
+                  size="small"
+                  color="black"
+                  onClick={() => addFavorite(result)}
+                >
+                  Add ♡
+                </Button>
+              )}
               <Button variant="text" size="small" color="black">
                 Share
               </Button>

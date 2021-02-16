@@ -117,7 +117,12 @@ function TopBar() {
   const [search, setSearch] = useState("");
   // const [menu, setMenu] = useState(null)
 
-  console.log("aa", favList.length);
+  console.log("m", favList);
+  const keyCount = Object.keys(favList).length;
+  console.log("keyCount", keyCount);
+  /* for (let i = 0, len = keys.length; i < len; i++) {
+    console.log("g", favList[keys[i]]);
+  } */
 
   const searchHandler = (e) => {
     console.log(`${e.target.value}`);
@@ -185,7 +190,7 @@ function TopBar() {
         style={{ textDecoration: "none" }}
       >
         <IconButton aria-label="show 11 new notifications" color="primary">
-          <Badge badgeContent={favList.length} color="secondary">
+          <Badge badgeContent={keyCount} color="secondary">
             <FavoriteIcon />
           </Badge>
         </IconButton>
@@ -193,9 +198,7 @@ function TopBar() {
       </MenuItem>
       <MenuItem component={Link} to="/chatroom">
         <IconButton aria-label="show 4 new mails" color="primary">
-          {/* <Badge badgeContent={4} color="primary"> */}
           <ChatIcon />
-          {/* </Badge> */}
         </IconButton>
         <p>Chatroom</p>
       </MenuItem>
@@ -273,7 +276,7 @@ function TopBar() {
               component={Link}
               to="/mylist"
             >
-              <Badge badgeContent={favList.length} color="secondary">
+              <Badge badgeContent={keyCount} color="secondary">
                 <FavoriteIcon />
               </Badge>
             </IconButton>

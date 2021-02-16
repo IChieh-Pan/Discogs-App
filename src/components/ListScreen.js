@@ -56,31 +56,7 @@ function ListScreen() {
             <Spinner />
           ) : (
             newResult.map((result) => {
-              const {
-                id,
-                thumb,
-                title,
-                cover_image,
-                type,
-                country,
-                year,
-                format,
-              } = result;
-              return (
-                <Cards
-                  key={id}
-                  id={id}
-                  cover_image={cover_image}
-                  title={title}
-                  thumb={thumb}
-                  type={type}
-                  country={country}
-                  year={year}
-                  format={format}
-                  //favorite={favorite}
-                  // addFavorite={addFavorite}
-                />
-              );
+              return <Cards key={result.id} result={result} />;
             })
           )}
         </Grid>

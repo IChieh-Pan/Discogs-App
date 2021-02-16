@@ -1,11 +1,13 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../context/AuthContex";
-import Card from "./Card";
+import Cards from "./Card";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
+import Container from "@material-ui/core/Container";
 
 function MyFavList() {
   const { favList, getFavorites } = useContext(AuthContext);
+  console.log("V", favList);
 
   const style = {
     marginTop: "10px",
@@ -14,14 +16,21 @@ function MyFavList() {
 
   return (
     <Box ml={8} pt={3}>
-      <Grid container style={style} alignItems="flex-start">
-        <ol>
+      <Container component="div" maxWidth="lg" align="center">
+        <Grid
+          container
+          style={style}
+          justify="center"
+          alignItems="center"
+          /* alignItems="flex-start" */
+          spacing={4}
+        >
           {favList &&
-             favList.map((item) => {
-               return <Card key={item.id}></Card>;
+            favList.map((result) => {
+              return <Cards key={result.id} result={result} />;
             })}
-        </ol>
-      </Grid>
+        </Grid>
+      </Container>
     </Box>
   );
 }

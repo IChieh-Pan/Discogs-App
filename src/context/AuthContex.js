@@ -96,17 +96,17 @@ export const AuthProvider = ({ children }) => {
       });
   };
 
-  const addFavorite = (favoritesid, title) => {
+  const addFavorite = (favorite) => {
     app.auth().onAuthStateChanged((user) => {
       if (user) {
         const userRef = db.collection("users").doc(user.uid);
         return userRef
           .update({
-            favorites: app.firestore.FieldValue.arrayUnion(favoritesid),
+            favorites: app.firestore.FieldValue.arrayUnion(favorite),
           })
           .then(() => {
             getFavorites();
-            alert(`${title} added!`);
+            alert(`${favorite.title} added!`);
           })
           .catch((error) => {
             console.log("Error when adding item", error);
@@ -131,7 +131,7 @@ export const AuthProvider = ({ children }) => {
       FavoritesRef.get()
         .then((doc) => {
           if (doc.exists) {
-            console.log("Favorites:", doc.data().favorites);
+            console.log("Favorites:", doc.data());
             setFavList(doc.data().favorites);
           } else {
             console.log("No such document!");
@@ -143,16 +143,16 @@ export const AuthProvider = ({ children }) => {
     });
   };
 
-  const removeFav = (favoritesid, title) => {
+  const removeFav = (favorite) => {
     app.auth().onAuthStateChanged((user) => {
       if (user) {
         const userRef = db.collection("users").doc(user.uid);
         return userRef
           .update({
-            favorites: app.firestore.FieldValue.arrayRemove(favoritesid),
+            favorites: app.firestore.FieldValue.arrayRemove(favorite),
           })
           .then(() => {
-            alert(`${title} removed!`);
+            alert(`${favorite.title} removed!`);
             getFavorites();
           })
           .catch((error) => {
