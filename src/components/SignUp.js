@@ -40,7 +40,7 @@ const SignUp = () => {
   const [isChecked, setIsChecked] = useState(false);
   const initialState = () => Number(window.localStorage.getItem("key"));
 
- /*  useEffect(() => {
+  /*  useEffect(() => {
     window.localStorage.setItem("currentUser", JSON.stringify(username, email));
   }, []); */
 
@@ -58,89 +58,89 @@ const SignUp = () => {
 
   return (
     <Box pt={4}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <div className={classes.paper}>
-          <Typography component="h1" variant="h5">
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <div className={classes.paper}>
+        <Typography component="h1" variant="h5">
+          Sign Up
+        </Typography>
+        <form className={classes.form} noValidate onSubmit={handleSignUp}>
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="username"
+            type="username"
+            label="Name"
+            name="username"
+            autoComplete="Name"
+            autoFocus
+            onChange={handleChange}
+            value={state.username}
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            type="email"
+            label="Email Address"
+            name="email"
+            autoComplete="email"
+            onChange={handleChange}
+            value={state.email}
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+            onChange={handleChange}
+            value={state.password}
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                value="remember"
+                color="primary"
+                onChange={(e) => {
+                  setIsChecked(e.target.checked);
+                }}
+              />
+            }
+            label="Remember me"
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
             Sign Up
-          </Typography>
-          <form className={classes.form} noValidate onSubmit={handleSignUp}>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="username"
-              type="username"
-              label="Name"
-              name="username"
-              autoComplete="Name"
-              autoFocus
-              onChange={handleChange}
-              value={state.username}
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              type="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              onChange={handleChange}
-              value={state.email}
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-              onChange={handleChange}
-              value={state.password}
-            />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  value="remember"
-                  color="primary"
-                  onChange={(e) => {
-                    setIsChecked(e.target.checked);
-                  }}
-                />
-              }
-              label="Remember me"
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-            >
-              Sign Up
-            </Button>
-            <Grid container>
-              <Grid item xs>
-                {/*   <Link href="#" variant="body2">
+          </Button>
+          <Grid container>
+            <Grid item xs>
+              {/*   <Link href="#" variant="body2">
                 Forgot password?
               </Link> */}
-              </Grid>
-              <Grid item>
-                <Link href="/login" variant="body2">
-                  {"Already a member? Log in"}
-                </Link>
-              </Grid>
             </Grid>
-          </form>
-        </div>
-      </Container>
+            <Grid item>
+              <Link href="/login" variant="body2">
+                {"Already a member? Log in"}
+              </Link>
+            </Grid>
+          </Grid>
+        </form>
+      </div>
+    </Container>
     </Box>
   );
 };

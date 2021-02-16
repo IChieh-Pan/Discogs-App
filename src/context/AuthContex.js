@@ -23,6 +23,7 @@ export const AuthProvider = ({ children }) => {
   const [favList, setFavList] = useState([]);
   const history = useHistory();
   const db = app.firestore();
+  // const [trigerAdd, setTrigerAdd] = useState(false);
 
   useEffect(() => {
     app.auth().onAuthStateChanged((user) => {
@@ -95,13 +96,13 @@ export const AuthProvider = ({ children }) => {
       });
   };
 
-  const addFavorite = (favorites, title) => {
+  const addFavorite = (favoritesid, title) => {
     app.auth().onAuthStateChanged((user) => {
       if (user) {
         const userRef = db.collection("users").doc(user.uid);
         return userRef
           .update({
-            favorites: app.firestore.FieldValue.arrayUnion(favorites),
+            favorites: app.firestore.FieldValue.arrayUnion(favoritesid),
           })
           .then(() => {
             getFavorites();
@@ -123,7 +124,6 @@ export const AuthProvider = ({ children }) => {
     history.push("/login");
   };
 
-  
   const getFavorites = () => {
     app.auth().onAuthStateChanged((user) => {
       const FavoritesRef = db.collection("users").doc(user.uid);
@@ -143,6 +143,27 @@ export const AuthProvider = ({ children }) => {
     });
   };
 
+  const removeFav = (favoritesid, title) => {
+    app.auth().onAuthStateChanged((user) => {
+      if (user) {
+        const userRef = db.collection("users").doc(user.uid);
+        return userRef
+          .update({
+            favorites: app.firestore.FieldValue.arrayRemove(favoritesid),
+          })
+          .then(() => {
+            alert(`${title} removed!`);
+            getFavorites();
+          })
+          .catch((error) => {
+            console.log("Error when removing item", error);
+          });
+      } else {
+        history.push("/login");
+      }
+    });
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -154,6 +175,7 @@ export const AuthProvider = ({ children }) => {
         handleLogout,
         favList,
         getFavorites,
+        removeFav,
       }}
     >
       {children}

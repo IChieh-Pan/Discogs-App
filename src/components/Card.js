@@ -14,6 +14,11 @@ import Checkbox from "@material-ui/core/Checkbox";
 import Box from "@material-ui/core/Box";
 import { AuthContext } from "../context/AuthContex";
 import { BrowserRouter, Switch, Route, useParams } from "react-router-dom";
+import VinylPlaceholder from "../image/VinylPlaceholder.jpg";
+import {
+  ImportantDevicesTwoTone,
+  InsertDriveFileTwoTone,
+} from "@material-ui/icons";
 
 export const theme = createMuiTheme({
   typography: {
@@ -24,13 +29,14 @@ export const theme = createMuiTheme({
       lineHeight: 1.167,
       fontSize: "1.4rem",
       color: "#000000",
+      marginBottom: 0,
       // backgroundColor: "#FED82A",
     },
     body2: {
       fontFamily: "IBM Plex Sans",
       fontWeight: 300,
-      lineHeight: 1.4,
-      fontSize: "1.1rem",
+      lineHeight: 1.3,
+      fontSize: "1.06rem",
       color: "#000000",
     },
     button: {
@@ -58,7 +64,9 @@ function Cards(props) {
   const id = props.id;
   // console.log("id", id);
 
-  const { addFavorite } = useContext(AuthContext);
+  const { favList, addFavorite, trigerAdd, removeFav } = useContext(
+    AuthContext
+  );
   // const initialState = () => Number(window.localStorage.getItem("key")) || 0;
   // const [favorite, setFavorite] = useState([]);
   // const [checked, setChecked] = useState(false);
@@ -115,6 +123,10 @@ function Cards(props) {
       mixBlendMode: "multiply",
       filter: "grayscale(100%)",
     },
+    /*         thumb: {
+      image: (props) =>
+       props.thumb === "" ? "../image/VinylPlaceholder.jpg" : { props.cover_image },
+    }, */
     actions: {
       paddingRight: 10,
       display: "flex",
@@ -128,12 +140,23 @@ function Cards(props) {
       backgroundColor: "#FDBCD5",
     },
   });
-  /*   const handleChange = (event) => {
-    setChecked(event.target.checked);
-  }; */
 
   const classes = useStyles();
   const formatList = props.format;
+  // const thumbImage = props.thumb;
+  const coverImage = props.cover_image;
+
+  /*   const removeFav = (favList, id) => {
+    const index = favList.indexOf(id)
+    if (index > -1) {
+      favList.splice(index, 1)
+    }
+    return favList
+  } */
+
+  /*   const handleChange = (event) => {
+    setChecked(event.target.checked);
+  }; */
 
   // console.log("Format", formatList);
 
@@ -158,6 +181,22 @@ function Cards(props) {
                 component="img"
                 alt={props.title}
                 image={props.cover_image}
+                // image={classes.thumb}
+                /* image={
+                  props.thumb === ""
+                    ? "../image/VinylPlaceholder.jpg"
+                    : { coverImage }
+                } */
+                /* image={
+                  thumbImage === ""
+                    ? {VinylPlaceholder}
+                    : coverImage
+                } */
+                /*  image={
+                  thumbImage == ""
+                    ? require("../image/VinylPlaceholder.jpg")
+                    : coverImage
+                } */
               />
             </div>
           </div>
@@ -188,7 +227,7 @@ function Cards(props) {
                   component="p"
                   display="block"
                 >
-                  Year: {props.year}
+                  Format: {formatList && formatList.join(" , ")}
                 </Typography>
                 <Typography
                   align="left"
@@ -196,7 +235,7 @@ function Cards(props) {
                   component="p"
                   display="block"
                 >
-                  Format:{formatList && formatList.join(" , ")}
+                  Year: {props.year}
                 </Typography>
               </CardContent>
             </Link>
@@ -208,9 +247,17 @@ function Cards(props) {
                 variant="text"
                 size="small"
                 color="black"
-                onClick={() => addFavorite(id,props.title)}
+                onClick={() => addFavorite(id, props.title)}
               >
-                ADD ♡
+                {favList.includes(id) ? "Remove ♥" : "Add ♡"}
+              </Button>
+              <Button
+                variant="text"
+                size="small"
+                color="black"
+                onClick={() => removeFav(id, props.title)}
+              >
+                Remove
               </Button>
               <Button variant="text" size="small" color="black">
                 Share

@@ -8,6 +8,17 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ListSubheader from "@material-ui/core/ListSubheader";
 import StarBorder from "@material-ui/icons/StarBorder";
 import Typography from "@material-ui//core/Typography";
+import Box from "@material-ui/core/Box";
+import Grid from "@material-ui/core/Grid";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+
+export const theme = createMuiTheme({
+  typography: {
+    h4: {
+      margin: "5",
+    },
+  },
+});
 
 function Detail({ id, type }) {
   const { test } = useContext(DiscogsListContext);
@@ -32,23 +43,47 @@ function Detail({ id, type }) {
       setHasProfile(true);
     }
   };
-  // const listName = data.map(item=>Object.keys(item))
+
+  const useStyles = makeStyles({
+    list: {
+      marginTop: 0,
+      marginBottom: 0,
+    },
+  });
+
+  const classes = useStyles();
 
   return (
-    <div>
-      {hasTrackList && (
-        <ol textAlign="left">
-          {data.tracklist.map((track, index) => (
-            <li key={index}>
-              {" "}
-              {track.title}, {track.duration}{" "}
-            </li>
-          ))}
-        </ol>
-      )}
-      {hasProfile && <p>{data.profile}</p>}
-      <h1>{data.uri}</h1>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Box m={8}>
+        <Grid md={8} lg={8}>
+          <h2>{data.title}</h2>
+
+          <div className={classes.list}>
+            {hasTrackList && (
+              <div>
+                <h4>Tracklist:</h4>
+                <ol textAlign="left">
+                  {data.tracklist.map((track, index) => (
+                    <li key={index}>
+                      {" "}
+                      {track.title}, {track.duration}{" "}
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            )}
+            {hasProfile && (
+              <div>
+                <h4>Introduction:</h4>
+                <p>{data.profile}</p>
+              </div>
+            )}
+            <h4>{data.uri}</h4>
+          </div>
+        </Grid>
+      </Box>
+    </ThemeProvider>
   );
 }
 

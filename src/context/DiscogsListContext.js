@@ -31,7 +31,7 @@ export const DiscogsProvider = (props) => {
       // console.log("p", pagination);
 
       const results = data.results;
-      // console.log("resultsperpage", results);
+      console.log("resultsperpage", results);
 
       const item = results[12];
       /*    console.log("item", item);
