@@ -14,7 +14,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import Box from "@material-ui/core/Box";
 import { AuthContext } from "../context/AuthContex";
 import { BrowserRouter, Switch, Route, useParams } from "react-router-dom";
-import vinylPlaceholder from "../image/VinylPlaceholder.jpg";
+import vinylPlaceholder from "../image/vinylPlaceholder.jpg";
 import {
   ImportantDevicesTwoTone,
   InsertDriveFileTwoTone,
@@ -69,9 +69,13 @@ const useStyles = makeStyles({
       flexDirection: "row",
     }, */
   content: {
-    width: 400,
+    width: 200,
     height: 130,
-    backgroundColor: "#FFD9E8" /* "#FFE1ED" */,
+    backgroundColor: "#FFD9E8",
+    [theme.breakpoints.up("sm")]: {
+      width: 400,
+      height: 130,
+    },
   },
   media: {
     width: "100%",
@@ -145,29 +149,6 @@ function Cards({ result }) {
   // const thumbImage = thumb;
   const coverImage = cover_image;
 
-  /*   const removeFav = (favList, id) => {
-    const index = favList.indexOf(id)
-    if (index > -1) {
-      favList.splice(index, 1)
-    }
-    return favList
-  } */
-
-  /*   const handleChange = (event) => {
-    setChecked(event.target.checked);
-  }; */
-
-  // console.log("Format", formatList);
-
-  // const addFavorite = (id) => {
-
-  //   addFavorite(id)
-  //   console.log("works");
-  //   //setFavorite([...favorite, props]);
-  //   // console.log(setFavorite(props));
-  // };
-  // const handleAddFavorite =
-
   return (
     <div>
       {/* <h1>Your Wishlist:{wishList}</h1> */}
@@ -180,22 +161,6 @@ function Cards({ result }) {
                 component="img"
                 alt={title}
                 image={thumb !== "" ? cover_image : vinylPlaceholder}
-                // image={classes.thumb}
-                /* image={
-                  props.thumb === ""
-                    ? "../image/VinylPlaceholder.jpg"
-                    : { coverImage }
-                } */
-                /* image={
-                  thumbImage === ""
-                    ? {VinylPlaceholder}
-                    : coverImage
-                } */
-                /*  image={
-                  thumbImage == ""
-                    ? require("../image/VinylPlaceholder.jpg")
-                    : coverImage
-                } */
               />
             </div>
           </div>
@@ -240,7 +205,7 @@ function Cards({ result }) {
             </Link>
             {/* </div> */}
 
-            <div className={classes.actions} justifyContent="flex-end">
+            <div className={classes.actions} justifycontent="flex-end">
               {/* <p>favorites: {favorite.length}</p> */}
               {favList.find((fav) => fav.id === result.id) ? (
                 <Button
@@ -249,7 +214,7 @@ function Cards({ result }) {
                   color="black"
                   onClick={() => removeFav(result)}
                 >
-                  Remove ♥
+                  Remove 🖤
                 </Button>
               ) : (
                 <Button
@@ -264,24 +229,8 @@ function Cards({ result }) {
               <Button variant="text" size="small" color="black">
                 Share
               </Button>
-              {/* <Button
-                variant="text"
-                size="small"
-                color="black"
-                onClick={() => props.addFavorite(props.id)}
-              >
-                Save Favorite
-              </Button> */}
-              {/* <Checkbox
-            checked={checked}
-            onChange={handleChange}
-            onChange={()=>addWishList(1)}
-            inputProps={{ "aria-label": "primary checkbox" }}
-          /> */}
-              {/* <button onClick={() => addWishList()}>add</button> */}
             </div>
           </div>
-          {/* </CardActionArea> */}
         </Card>
       </ThemeProvider>
     </div>

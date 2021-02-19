@@ -50,10 +50,9 @@ export const ChatProvider = ({ children }) => {
         const messageArray = [];
 
         querySnapshot.forEach((doc) => {
-          console.log(doc.id, " => ", doc.data());
+          // console.log(doc.id, " => ", doc.data());
           messageArray.push(doc.data());
         });
-        console.log("messageArray", messageArray);
         setMessages(messageArray);
       });
   };

@@ -10,7 +10,7 @@ function Count() {
     display: "flex",
     marginTop: "65px",
     marginLeft: "50px",
-    justifyContent: "flex-start",
+    justifycontent: "flex-start",
   };
 
   /*   const handleResetWishList = () => {

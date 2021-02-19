@@ -11,15 +11,17 @@
     "firebase": "^8.2.2",
     "fontsource-roboto": "^4.0.0",
     "react": "^17.0.1",
+    "react-device-detect": "^1.15.0",
     "react-dom": "^17.0.1",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
+    "react-truncate": "^2.4.0",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
     "start": "NODE_PATH=src react-scripts start",
-    "build": "NODE_PATH=src eact-scripts build",
+    "build": "NODE_PATH=src react-scripts build",
     "test": "NODE_PATH=src react-scripts test",
     "eject": "react-scripts eject"
   },

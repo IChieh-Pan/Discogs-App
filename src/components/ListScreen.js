@@ -11,9 +11,6 @@ import Container from "@material-ui/core/Container";
 
 function ListScreen() {
   const { results, setResults, loading, type } = useContext(DiscogsListContext);
-  /* const { addFavorite } = useContext(
-    AuthContext
-  ); */
 
   const newResult = results.filter((result) => {
     return result.type === type;
@@ -48,7 +45,7 @@ function ListScreen() {
           container
           style={style}
           justify="center"
-          alignItems="center"
+          alignItems="start"
           /* alignItems="flex-start" */
           spacing={4}
         >

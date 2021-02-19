@@ -43,11 +43,12 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   title: {
-    display: "flex",
+    display: "flex-start",
     color: "#ffffff",
-    fontSize: "1.4rem",
+    fontSize: "1rem",
     [theme.breakpoints.up("sm")]: {
-      display: "block",
+      fontSize: "1.4rem",
+      display: "flex",
       color: "#ffffff",
     },
   },
@@ -60,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
     },
     marginRight: theme.spacing(2),
     marginLeft: 20,
-    width: "20%",
+    width: "80%",
     borderRadius: "5rem",
     [theme.breakpoints.up("sm")]: {
       width: "100%",
@@ -117,20 +118,13 @@ function TopBar() {
   const [search, setSearch] = useState("");
   // const [menu, setMenu] = useState(null)
 
-  console.log("m", favList);
   const keyCount = Object.keys(favList).length;
-  console.log("keyCount", keyCount);
-  /* for (let i = 0, len = keys.length; i < len; i++) {
-    console.log("g", favList[keys[i]]);
-  } */
 
   const searchHandler = (e) => {
-    console.log(`${e.target.value}`);
     setSearch(e.target.value);
   };
 
   const searchSubmit = (e) => {
-    // e.preventDefault(); the buttton is not a form, no need
     fetchData(search);
   };
 
@@ -153,9 +147,9 @@ function TopBar() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-  const favListCount = () => {
+  /*   const favListCount = () => {
     console.log(favList.lenght);
-  };
+  }; */
 
   const menuId = "primary-search-account-menu";
   const renderMenu = (
@@ -234,42 +228,42 @@ function TopBar() {
     <div className={classes.grow}>
       <AppBar className={classes.root}>
         <Toolbar>
-          <Grid alignContent={"space-between"}>
-            <div style={{ display: "inline-block" }}>
-              <Typography
-                component={Link}
-                to="/"
-                // variant="h6"
-                className={classes.title}
-                style={{ textDecoration: "none" }}
-              >
-                {"🎧 Discogs 🎧"}
-              </Typography>
-            </div>
-            <div style={{ display: "inline-block" }}>
-              <div className={classes.search}>
-                <div className={classes.searchIcon}>
-                  <SearchIcon />
-                </div>
-                <InputBase
-                  placeholder="Search…"
-                  classes={{
-                    root: classes.inputRoot,
-                    input: classes.inputInput,
-                  }}
-                  inputProps={{ "aria-label": "search" }}
-                  onChange={searchHandler}
-                  onClick={searchSubmit}
-                  value={search}
-                  style={{ borderRadius: "5rem" }}
-                />
+          {/* <Grid alignContent={"space-between"}> */}
+          {/* </div> */}
+          <div style={{ display: "inline-block" }}>
+            <Typography
+              component={Link}
+              to="/"
+              // variant="h6"
+              className={classes.title}
+              style={{ textDecoration: "none" }}
+            >
+              {"Discogs 🎧"}
+            </Typography>
+          </div>
+          <div style={{ display: "inline-block" }}>
+            <div className={classes.search}>
+              <div className={classes.searchIcon}>
+                <SearchIcon />
               </div>
+              <InputBase
+                placeholder="Search…"
+                classes={{
+                  root: classes.inputRoot,
+                  input: classes.inputInput,
+                }}
+                inputProps={{ "aria-label": "search" }}
+                onChange={searchHandler}
+                onClick={searchSubmit}
+                value={search}
+                style={{ borderRadius: "5rem" }}
+              />
             </div>
-          </Grid>
+          </div>
+          {/* </Grid> */}
 
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            {/* <MenuItem component={Link} to="/mylist"> */}
             <IconButton
               aria-label="show 17 new notifications"
               color="inherit"
@@ -280,11 +274,9 @@ function TopBar() {
                 <FavoriteIcon />
               </Badge>
             </IconButton>
-            {/* </MenuItem> */}
+
             <IconButton aria-label="show 4 new mails" color="inherit">
-              {/* <Badge badgeContent={4} color="secondary"> */}
               <ChatIcon />
-              {/* </Badge> */}
             </IconButton>
             <IconButton
               edge="end"

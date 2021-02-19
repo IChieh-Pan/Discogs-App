@@ -7,11 +7,8 @@ export const DiscogsProvider = (props) => {
   const [item, setItem] = useState([]);
   const [results, setResults] = useState([]);
   const [pagination, setPagination] = useState({});
-  // const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
-  // const [err, setErr] = useState({});
   const [type, setType] = useState("artist");
-  // const [favorite, setFavorite] = useState([0]);
 
   useEffect(() => {
     fetchData("");
@@ -31,41 +28,28 @@ export const DiscogsProvider = (props) => {
       // console.log("p", pagination);
 
       const results = data.results;
-      console.log("resultsperpage", results);
-
-      // const item = results[12];
-      /*    console.log("item", item);
-      console.log("type", item.type); */
+      // console.log("resultsperpage", results);
 
       setResults(results);
       setPagination(pagination);
       setItem(item);
-      // setFavorite(favorite);
-
-      // setSearch(search);
     } catch (err) {
       alert(err);
     }
   };
 
   const value = {
-    /*    data,
-        setData, */
     results,
     setResults,
     item,
     setItem,
     pagination,
     setPagination,
-    /* search,
-    setSearch, */
     fetchData,
     loading,
     setLoading,
     type,
     setType,
-    /* favorite,
-    setFavorite */
   };
 
   return (
