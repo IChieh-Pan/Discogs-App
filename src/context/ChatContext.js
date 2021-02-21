@@ -1,7 +1,6 @@
 import React, { useState, createContext, useContext, useEffect } from "react";
 import app from "../components/firebase";
 import { AuthContext } from "./AuthContex";
-import { useHistory } from "react-router-dom";
 
 const initContext = {
   messages: [],

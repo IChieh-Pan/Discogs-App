@@ -9,19 +9,12 @@ import InputBase from "@material-ui/core/InputBase";
 import Badge from "@material-ui/core/Badge";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
-import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import AccountCircle from "@material-ui/icons/AccountCircle";
-import MailIcon from "@material-ui/icons/Mail";
-import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
-import Button from "@material-ui/core/Button";
-import { borders } from "@material-ui/system";
 import { useHistory, Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContex";
 import FavoriteIcon from "@material-ui/icons/Favorite";
-import MyFavList from "./MyFavList";
-import Grid from "@material-ui/core/Grid";
 import ChatIcon from "@material-ui/icons/Chat";
 
 const useStyles = makeStyles((theme) => ({
@@ -54,7 +47,6 @@ const useStyles = makeStyles((theme) => ({
   },
   search: {
     position: "relative",
-    borderRadius: theme.shape.borderRadius,
     backgroundColor: fade(theme.palette.common.white, 0.15),
     "&:hover": {
       backgroundColor: fade(theme.palette.common.white, 0.25),
@@ -64,7 +56,6 @@ const useStyles = makeStyles((theme) => ({
     width: "80%",
     borderRadius: "5rem",
     [theme.breakpoints.up("sm")]: {
-      width: "100%",
       marginLeft: theme.spacing(3),
       width: "auto",
       borderRadius: "5rem",
@@ -110,7 +101,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function TopBar() {
-  const { loggedIn, handleLogout, user, favList } = useContext(AuthContext);
+  const { handleLogout, user, favList } = useContext(AuthContext);
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
@@ -218,7 +209,7 @@ function TopBar() {
           >
             <AccountCircle />
           </IconButton>
-          <p>Sign in</p>
+          <p>Sign up/ Log in</p>
         </MenuItem>
       )}
     </Menu>

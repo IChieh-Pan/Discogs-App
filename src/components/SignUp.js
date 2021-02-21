@@ -1,12 +1,11 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { withRouter, Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContex";
-import app from "./firebase";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
+// import FormControlLabel from "@material-ui/core/FormControlLabel";
+// import Checkbox from "@material-ui/core/Checkbox";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
@@ -36,8 +35,8 @@ const useStyles = makeStyles((theme) => ({
 const SignUp = () => {
   const [state, setState] = useState({ email: "", password: "", username: "" });
   const { signUp } = useContext(AuthContext);
-  const [isChecked, setIsChecked] = useState(false);
-  const initialState = () => Number(window.localStorage.getItem("key"));
+  // const [isChecked, setIsChecked] = useState(false);
+  // const initialState = () => Number(window.localStorage.getItem("key"));
 
   /*  useEffect(() => {
     window.localStorage.setItem("currentUser", JSON.stringify(username, email));
@@ -104,7 +103,7 @@ const SignUp = () => {
               onChange={handleChange}
               value={state.password}
             />
-            <FormControlLabel
+            {/* <FormControlLabel
               control={
                 <Checkbox
                   value="remember"
@@ -115,7 +114,7 @@ const SignUp = () => {
                 />
               }
               label="Remember me"
-            />
+            /> */}
             <Button
               type="submit"
               fullWidth

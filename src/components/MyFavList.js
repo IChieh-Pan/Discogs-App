@@ -6,7 +6,7 @@ import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 
 function MyFavList() {
-  const { favList, getFavorites } = useContext(AuthContext);
+  const { favList } = useContext(AuthContext);
   console.log("V", favList);
 
   const style = {

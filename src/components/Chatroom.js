@@ -61,21 +61,6 @@ function Chatroom() {
       ) : (
         <h2>Loading...</h2>
       )}
-
-      {/* {messages ? (
-        messages.map((message, i=0) => {
-          <div
-            className={classes.bubbleContainer}
-            key={i}
-          >
-            <div key={i++} className={classes.bubble}>
-              <div className={classes.button}>{message.body}</div>
-            </div>
-          </div>;
-        })
-      ) : (
-        <h2>Loading...</h2>
-      )} */}
     </div>
   );
 }

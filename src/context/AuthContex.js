@@ -1,4 +1,4 @@
-import React, { useState, createContext, useContext, useEffect } from "react";
+import React, { useState, createContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import app from "../components/firebase";
 
@@ -74,7 +74,9 @@ export const AuthProvider = ({ children }) => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log("error creating user...", errorMessage);
+        console.log(errorCode);
+        console.log(errorMessage);
+        alert("Error creating user...");
       });
   };
 
@@ -92,6 +94,8 @@ export const AuthProvider = ({ children }) => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        console.log(errorCode);
+        console.log(errorMessage);
         alert("There is an error when logging");
       });
   };

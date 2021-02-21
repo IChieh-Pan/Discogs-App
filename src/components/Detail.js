@@ -1,13 +1,5 @@
-import React, { useState, useContext, useEffect } from "react";
-import { DiscogsListContext } from "../context/DiscogsListContext";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListSubheader from "@material-ui/core/ListSubheader";
-import StarBorder from "@material-ui/icons/StarBorder";
-import Typography from "@material-ui//core/Typography";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
@@ -21,28 +13,26 @@ export const theme = createMuiTheme({
 });
 
 function Detail({ id, type }) {
-  const { test } = useContext(DiscogsListContext);
   const [data, setData] = useState({});
   const [hasTrackList, setHasTrackList] = useState(false);
   const [hasProfile, setHasProfile] = useState(false);
   console.log("id", id);
   console.log("type", type);
 
-  useEffect(() => {
+  useEffect((id, type) => {
+    const fetchData = async () => {
+      const response = await fetch(`https://api.discogs.com/${type}s/${id}`);
+      const data = await response.json();
+      console.log("data2", data);
+      setData(data);
+      if ("tracklist" in data) {
+        setHasTrackList(true);
+      } else if ("profile" in data) {
+        setHasProfile(true);
+      }
+    };
     fetchData();
   }, []);
-
-  const fetchData = async () => {
-    const response = await fetch(`https://api.discogs.com/${type}s/${id}`);
-    const data = await response.json();
-    console.log("data2", data);
-    setData(data);
-    if ("tracklist" in data) {
-      setHasTrackList(true);
-    } else if ("profile" in data) {
-      setHasProfile(true);
-    }
-  };
 
   const useStyles = makeStyles({
     list: {
