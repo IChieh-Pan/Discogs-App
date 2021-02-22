@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }) => {
     app.auth().onAuthStateChanged((user) => {
       if (user) {
         setUser(user);
-        console.log("user", user);
+        // console.log("user", user);
         setLoggedIn(true);
         getFavorites();
       }
@@ -135,7 +135,7 @@ export const AuthProvider = ({ children }) => {
       FavoritesRef.get()
         .then((doc) => {
           if (doc.exists) {
-            console.log("Favorites:", doc.data());
+            // console.log("Favorites:", doc.data());
             setFavList(doc.data().favorites);
           } else {
             console.log("No such document!");

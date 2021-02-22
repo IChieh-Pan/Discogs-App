@@ -1,5 +1,13 @@
 import { createMuiTheme } from "@material-ui/core/styles";
 
+/* export const useStyles = makeStyles((theme) => ({
+  root: {
+    inputRoot: {
+      color: "#ffffff",
+    },
+  },
+})); */
+
 export const theme = createMuiTheme({
   typography: {
     fontFamily: "IBM Plex Sans",
@@ -14,22 +22,6 @@ export const theme = createMuiTheme({
       fontFamily: "IBM Plex Sans",
       fontWeight: 100,
       fontSize: "2.4rem",
-    },
-    h5: {
-      fontFamily: "IBM Plex Sans",
-      fontWeight: 700,
-      lineHeight: 1.167,
-      fontSize: "1.4rem",
-      color: "#000000",
-      marginBottom: 0,
-      // backgroundColor: "#FED82A",
-    },
-    body2: {
-      fontFamily: "IBM Plex Sans",
-      fontWeight: 300,
-      lineHeight: 1.3,
-      fontSize: "1.06rem",
-      color: "#000000",
     },
     button: {
       border: "0.5px",

@@ -16,6 +16,7 @@ import { useHistory, Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContex";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ChatIcon from "@material-ui/icons/Chat";
+import { BrowserView, MobileView } from "react-device-detect";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -222,16 +223,28 @@ function TopBar() {
           {/* <Grid alignContent={"space-between"}> */}
           {/* </div> */}
           <div style={{ display: "inline-block" }}>
-            <Typography
-              component={Link}
-              to="/"
-              // variant="h6"
-              className={classes.title}
-              style={{ textDecoration: "none" }}
-            >
-              {"Discogs 🎧"}
-            </Typography>
+            <BrowserView>
+              <Typography
+                component={Link}
+                to="/"
+                className={classes.title}
+                style={{ textDecoration: "none" }}
+              >
+                {"🎧 Discogs 🎧"}
+              </Typography>
+            </BrowserView>
+            <MobileView>
+              <Typography
+                component={Link}
+                to="/"
+                className={classes.title}
+                style={{ textDecoration: "none" }}
+              >
+                {"Discogs"}
+              </Typography>
+            </MobileView>
           </div>
+          <div className={classes.grow} />
           <div style={{ display: "inline-block" }}>
             <div className={classes.search}>
               <div className={classes.searchIcon}>
@@ -253,7 +266,6 @@ function TopBar() {
           </div>
           {/* </Grid> */}
 
-          <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton
               aria-label="show 17 new notifications"

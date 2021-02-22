@@ -6,12 +6,13 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
-// import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import { AuthContext } from "../context/AuthContex";
 import vinylPlaceholder from "../image/vinylPlaceholder.jpg";
+import { isMobile } from "react-device-detect";
 
-/* export const theme = createMuiTheme({
+export const theme = createMuiTheme({
   typography: {
     fontFamily: "Barlow Condensed",
     h5: {
@@ -38,14 +39,16 @@ import vinylPlaceholder from "../image/vinylPlaceholder.jpg";
   shape: {
     borderRadius: 4,
   },
-}); */
+});
 
 const useStyles = makeStyles({
   root: {
     maxWidth: 800,
     height: 160,
-    marginBottom: "1.5rem",
-    marginRight: "1.5rem",
+    marginBottom: "1rem",
+    marginLeft: "1rem",
+    marginTop: "1rem",
+    marginRight: "1rem",
     display: "flex",
     flexDirection: "row",
   },
@@ -57,10 +60,10 @@ const useStyles = makeStyles({
     width: 200,
     height: 130,
     backgroundColor: "#FFD9E8",
-    /* [theme.breakpoints.up("sm")]: {
-      width: 400,
+    [theme.breakpoints.up("sm")]: {
+      width: 350,
       height: 130,
-    }, */
+    },
   },
   media: {
     width: "100%",
@@ -77,8 +80,12 @@ const useStyles = makeStyles({
     backgroundColor: "#FDBCD5",
   },
   image: {
-    width: 200,
+    width: 160,
     height: 160,
+    [theme.breakpoints.up("sm")]: {
+      width: 200,
+      height: 160,
+    },
     position: "relative",
     objectFit: "cover",
     mixBlendMode: "multiply",
@@ -96,8 +103,12 @@ const useStyles = makeStyles({
     backgroundColor: "#FFD9E8",
   },
   container: {
-    width: 200,
+    width: 160,
     height: 160,
+    [theme.breakpoints.up("sm")]: {
+      width: 200,
+      height: 160,
+    },
     backgroundColor: "#FDBCD5",
   },
 });
@@ -133,87 +144,87 @@ function Cards({ result }) {
   return (
     <div>
       {/* <h1>Your Wishlist:{wishList}</h1> */}
-      {/* <ThemeProvider theme={theme}> */}
-      <Card className={classes.root} elevation={0}>
-        <div className={classes.container}>
-          <div className={classes.image}>
-            <CardMedia
-              className={classes.media}
-              component="img"
-              alt={title}
-              image={thumb !== "" ? cover_image : vinylPlaceholder}
-            />
+      <ThemeProvider theme={theme}>
+        <Card className={classes.root} elevation={0}>
+          <div className={classes.container}>
+            <div className={classes.image}>
+              <CardMedia
+                className={classes.media}
+                component="img"
+                alt={title}
+                image={thumb !== "" ? cover_image : vinylPlaceholder}
+              />
+            </div>
           </div>
-        </div>
 
-        {/* <CardActionArea> */}
-        <div className={classes.linkarea}>
-          <Link
-            variant="body2"
-            to={`/detail/${id}/${type}`}
-            style={{ textDecoration: "none" }}
-          >
-            {/* <div className={classes.details}> */}
-            <CardContent className={classes.content}>
-              <Typography gutterBottom variant="h5" align="left">
-                <Box>{title}</Box>
-              </Typography>
-              <Typography
-                align="left"
-                variant="body2"
-                component="p"
-                display="block"
-              >
-                Type: {type}
-              </Typography>
-              <Typography
-                align="left"
-                variant="body2"
-                component="p"
-                display="block"
-              >
-                Format: {formatList && formatList.join(" , ")}
-              </Typography>
-              <Typography
-                align="left"
-                variant="body2"
-                component="p"
-                display="block"
-              >
-                Year: {year}
-              </Typography>
-            </CardContent>
-          </Link>
-          {/* </div> */}
+          {/* <CardActionArea> */}
+          <div className={classes.linkarea}>
+            <Link
+              variant="body2"
+              to={`/detail/${id}/${type}`}
+              style={{ textDecoration: "none" }}
+            >
+              {/* <div className={classes.details}> */}
+              <CardContent className={classes.content}>
+                <Typography gutterBottom variant="h5" align="left">
+                  <Box>{title}</Box>
+                </Typography>
+                <Typography
+                  align="left"
+                  variant="body2"
+                  component="p"
+                  display="block"
+                >
+                  Type: {type}
+                </Typography>
+                <Typography
+                  align="left"
+                  variant="body2"
+                  component="p"
+                  display="block"
+                >
+                  Format: {formatList && formatList.join(" , ")}
+                </Typography>
+                <Typography
+                  align="left"
+                  variant="body2"
+                  component="p"
+                  display="block"
+                >
+                  Year: {year}
+                </Typography>
+              </CardContent>
+            </Link>
+            {/* </div> */}
 
-          <div className={classes.actions} justifycontent="flex-end">
-            {/* <p>favorites: {favorite.length}</p> */}
-            {favList.find((fav) => fav.id === result.id) ? (
-              <Button
-                variant="text"
-                size="small"
-                color="primary"
-                onClick={() => removeFav(result)}
-              >
-                Remove 🖤
+            <div className={classes.actions} justifycontent="flex-end">
+              {/* <p>favorites: {favorite.length}</p> */}
+              {favList.find((fav) => fav.id === result.id) ? (
+                <Button
+                  variant="text"
+                  size="small"
+                  color="#000000"
+                  onClick={() => removeFav(result)}
+                >
+                  Remove 🖤
+                </Button>
+              ) : (
+                <Button
+                  variant="text"
+                  size="small"
+                  color="#000000"
+                  onClick={() => addFavorite(result)}
+                >
+                  Add ♡
+                </Button>
+              )}
+              <Button variant="text" size="small" color="#000000">
+                Share
               </Button>
-            ) : (
-              <Button
-                variant="text"
-                size="small"
-                color="primary"
-                onClick={() => addFavorite(result)}
-              >
-                Add ♡
-              </Button>
-            )}
-            <Button variant="text" size="small" color="primary">
-              Share
-            </Button>
+            </div>
           </div>
-        </div>
-      </Card>
-      {/* </ThemeProvider> */}
+        </Card>
+      </ThemeProvider>
     </div>
   );
 }

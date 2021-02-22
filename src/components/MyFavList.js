@@ -20,8 +20,8 @@ function MyFavList() {
         <Grid
           container
           style={style}
-          justify="start"
-          alignItems="center"
+          justify="center"
+          alignItems="start"
           /* alignItems="flex-start" */
           spacing={4}
         >
