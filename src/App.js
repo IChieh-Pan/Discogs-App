@@ -3,7 +3,7 @@ import React from "react";
 import { ChatProvider } from "./context/ChatContext";
 import ListScreen from "./components/ListScreen";
 import { DiscogsProvider } from "./context/DiscogsListContext";
-import Count from "./components/Count";
+// import Count from "./components/Count";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Detail from "./components/Detail";
 import BottomNav from "../src/components/BottomNav";
@@ -36,14 +36,14 @@ function App() {
                   <Route exact path="/signup" component={SignUp} />
                   <Route exact path="/chatroom" component={Chatroom} />
                   <Route exact path="/">
+                    {/* <Count /> */}
                     <ListScreen />
                     <BottomNav />
-                    <Count />
                   </Route>
                   <Route exact path="/mylist" component={MyFavList}>
+                    {/* <Count /> */}
                     <MyFavList />
                     <BottomNav />
-                    <Count />
                   </Route>
                   <Route
                     path="/detail/:id/:type"

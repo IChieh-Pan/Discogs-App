@@ -15,23 +15,23 @@ function MyFavList() {
   };
 
   return (
-    <Box ml={8} pt={3}>
-      <Container component="div" maxWidth="lg" align="center">
-        <Grid
-          container
-          style={style}
-          justify="center"
-          alignItems="start"
-          /* alignItems="flex-start" */
-          spacing={4}
-        >
-          {favList &&
-            favList.map((result) => {
-              return <Cards key={result.id} result={result} />;
-            })}
-        </Grid>
-      </Container>
-    </Box>
+    // <Box ml={8} pt={3}>
+    <Container component="div" maxWidth="lg" align="center">
+      <Grid
+        container
+        style={style}
+        justify="center"
+        alignItems="start"
+        /* alignItems="flex-start" */
+        spacing={4}
+      >
+        {favList &&
+          favList.map((result) => {
+            return <Cards key={result.id} result={result} />;
+          })}
+      </Grid>
+    </Container>
+    // </Box>
   );
 }
 

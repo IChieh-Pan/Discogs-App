@@ -7,8 +7,8 @@ function Count() {
 
   const style = {
     display: "flex",
-    marginTop: "65px",
-    marginLeft: "50px",
+    marginTop: "40px",
+    marginLeft: "25px",
     justifycontent: "flex-start",
   };
 
