@@ -10,7 +10,7 @@ import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import { AuthContext } from "../context/AuthContex";
 import vinylPlaceholder from "../image/vinylPlaceholder.jpg";
-import { isMobile } from "react-device-detect";
+import TextTruncate from "react-text-truncate";
 
 export const theme = createMuiTheme({
   typography: {
@@ -30,7 +30,9 @@ export const theme = createMuiTheme({
       lineHeight: 1.3,
       fontSize: "1.06rem",
       color: "#000000",
+      // display: "inline-block",
     },
+
     button: {
       borderColor: "#e7e7e7",
       color: "#000000",
@@ -167,7 +169,9 @@ function Cards({ result }) {
               {/* <div className={classes.details}> */}
               <CardContent className={classes.content}>
                 <Typography gutterBottom variant="h5" align="left">
-                  <Box>{title}</Box>
+                  <Box>
+                    <TextTruncate line={1} truncateText="…" text={title} />
+                  </Box>
                 </Typography>
                 <Typography
                   align="left"
@@ -177,13 +181,28 @@ function Cards({ result }) {
                 >
                   Type: {type}
                 </Typography>
-                <Typography
+
+                {/* <TextTruncate line={1}
+                    element="span"
+                    truncateText="…"
+                    text= 
+                  /> */}
+
+                {/* <Typography
                   align="left"
                   variant="body2"
                   component="p"
                   display="block"
                 >
                   Format: {formatList && formatList.join(" , ")}
+                </Typography> */}
+                <Typography align="left" variant="body2" component="p">
+                  Format:
+                  <TextTruncate
+                    line={1}
+                    truncateText="…"
+                    text={formatList && formatList.join(" , ")}
+                  />
                 </Typography>
                 <Typography
                   align="left"
