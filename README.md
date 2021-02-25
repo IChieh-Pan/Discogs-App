@@ -6,9 +6,13 @@ The discogs-app is a progressive web app that provides a basic search and bookma
 
 
 ## Features
-Enter your search in the searchbar and get results from the world's largest musis database! You can use the bottom tabs to further filter your results.
+Enter your search in the searchbar and get results from the world's largest musis database! 
+You can use the bottom tabs to further filter your results.
+
+
 
 <img src="public/SearchBar.jpg" width="450" style="display:block">
+<br>
 <br>
 <img src="public/BottomNavTabs.jpeg"  width="450" style="display:block">
 
