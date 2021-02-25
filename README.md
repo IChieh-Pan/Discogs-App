@@ -6,6 +6,11 @@ The discogs-app is a progressive web app that provides a basic search and bookma
 (https://github.com/IChieh-Pan/Discogs-App/public/Discogs-1.png)
 
 
+
+
+<img src="/public/Duscogs-1.png">
+=======
+
 ### Approach
 
 React Context API <br>
