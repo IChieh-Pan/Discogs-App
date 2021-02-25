@@ -4,8 +4,15 @@ The discogs-app is a progressive web app that provides a basic search and bookma
 
 <img src="public/Discogs-LandingPage.png" width="900">
 
-----
 
+## Features
+Enter your search in the searchbar and get results from the world's largest musis database! You can use the bottom tabs to further filter your results.
+
+
+
+
+You can register an account with your Emaii and username. With an account, you can save artists, bands or albums that you like to your Favorite list. 
+The 
 
 
 ## Approach
