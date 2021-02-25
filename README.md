@@ -4,9 +4,11 @@ The discogs-app is a progressive web app that provides a basic search and bookma
 
 <img src="public/Discogs-LandingPage.png" width="900">
 
-=======
+----
 
-### Approach
+
+
+## Approach
 
 React Context API <br>
 React Router Dom  <br>
@@ -14,7 +16,7 @@ Asynchronous Javascript -AJAX <br>
 Responsive Web Design <br>
 
 
-### Tools,Framework
+## Tools,Framework
 
 Firebase  <br>
 Google Oauth <br>
@@ -22,14 +24,14 @@ Material UI <br>
 React Device Detect <br>
 
 
-### Resources
+## Resources
 
 Discogs API  <br>
 https://www.discogs.com/developers/#  <br>
 
 
 
-### Learn More
+## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
