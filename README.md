@@ -8,7 +8,7 @@ The discogs-app is a progressive web app that provides a basic search and bookma
 
 
 
-<img src="/public/Duscogs-1.png">
+<img src="./public/Duscogs-1.png">
 =======
 
 ### Approach
