@@ -1,16 +1,14 @@
-### Discogs SPA made with React
+### Discogs App made with React
 
 The discogs-app is a progressive web app that provides a basic search and bookmark function for the user. It improved and simplified the user interface, yet kept the core functions of discogs.com
-
-### Motivation
-
 
 
 ### Approach
 
 React Context API <br>
-React Router  <br>
+React Router Dom  <br>
 Asynchronous Javascript -AJAX <br>
+Responsive Web Design <br>
 
 
 ### Tools,Framework
@@ -18,7 +16,7 @@ Asynchronous Javascript -AJAX <br>
 Firebase  <br>
 Google Oauth <br>
 Material UI <br>
-React <br>
+React Device Detect <br>
 
 
 ### Resources
