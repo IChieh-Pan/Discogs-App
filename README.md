@@ -2,13 +2,8 @@
 
 The discogs-app is a progressive web app that provides a basic search and bookmark function for the user. It improved and simplified the user interface, yet kept the core functions of discogs.com
 
-![discogs-app]
-(https://github.com/IChieh-Pan/Discogs-App/public/Discogs-1.png)
+![discogs-app](public/Discogs-1_s.png)
 
-
-
-
-<img src="./public/Duscogs-1.png">
 =======
 
 ### Approach
