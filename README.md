@@ -19,7 +19,7 @@ You can use the bottom tabs to further filter your results.
 <img src="public/BottomNavTabs.jpeg"  width="450" style="display:block">
 
 
-You can register an account with your Emaii and username. With an account, you can save artists, bands or albums that you like to your Favorite list. 
+You can register an account with your Emaii and username. With an account, you can save artists, bands or albums that you like to your Favorite list. You saved-list update will be shown at the top bar counter badge. (see below) 
 
 
 <img src="public/SaveFavorite.jpg"  width="450">
