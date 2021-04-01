@@ -19,7 +19,6 @@ import MyCssBaseline from "./components/MyCssBaseline";
 import MyFavList from "./components/MyFavList";
 import Box from "@material-ui/core/Box";
 
-// const App = withRouter(({location}) => {
 function App() {
   return (
     <BrowserRouter>
@@ -36,12 +35,10 @@ function App() {
                   <Route exact path="/signup" component={SignUp} />
                   <Route exact path="/chatroom" component={Chatroom} />
                   <Route exact path="/">
-                    <Count />
                     <ListScreen />
                     <BottomNav />
                   </Route>
                   <Route exact path="/mylist" component={MyFavList}>
-                    {/* <Count /> */}
                     <MyFavList />
                     <BottomNav />
                   </Route>
